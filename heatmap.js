@@ -12,16 +12,27 @@ const tooltip = d3.select("body")
                    .attr("id","tooltip")
                    .style("opacity",0)
 
-/** Heatmap variables */ 
+/** Global heat map variables */ 
                 
+
 /*** Heatmap code */
+
 /** Fetch data */
 fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json')
     .then(response => response.json())
     .then(data => dataset = data.slice())
     .then(() => {
         
-    /**  */
+/** Local heat map variables */
+
+
+/** Map dataset to graph */
+
+
+/** Set up x-axis*/
+
+
+/** Set up y-axis */
 
 
 
