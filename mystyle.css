@@ -23,3 +23,21 @@ figure {
 figcaption {
     font-weight: bold;
 }
+
+.tooltip {
+    background-color: gainsboro;
+    position: absolute;
+    opacity: 0;
+    color: black;
+    font-size: 16px;
+    padding: 5px;
+    pointer-events: none;
+    border: 2px solid slategray;
+    border-radius: 3px;
+  }
+  
+  .legend rect {
+    fill: snow;
+    opacity: 0.9;
+    stroke: dimgray;
+  }
