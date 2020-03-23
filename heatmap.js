@@ -34,10 +34,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [ ] What is this heat map about? Climate change trends by month and by year
     [ ] Determine the min and max values
     [ ] Determine how to set up the x-axis: years
-    [ ] Determine how to set up the y-axis
+    [ ] Determine how to set up the y-axis: month
 [ ] Create heat map separately from legend
     [X] Create separate sections for legend and heatmap
 [ ] Create heat map
+    [ ] The x-axis should have tick labels with the years between 1754 and 2015
+    [ ] The y-axis should have tick labels with the full name of the months of the year
 [ ] Create legend
-  
+    [ ] The legend should have at least 4 different fill colors
 */
