@@ -27,9 +27,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 /*** Legend code */
 
 
-/*** To-do's 
- * [ ] Create heatmap separately from legend
- * 
- * 
- * 
+/*** To-do's */
+/*
+ [ ] Create heatmap separately from legend
+    [X] Create separate sections for legend and heatmap
+ [ ] 
+  
 */
