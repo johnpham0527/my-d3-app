@@ -16,9 +16,10 @@ const tooltip = d3.select("body")
                 
 /*** Heatmap code */
 /** Fetch data */
-fetch('tps://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json')
+fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json')
     .then(response => response.json())
     .then(data => dataset = data.slice())
     .then(() => {
-
+        
     }
+);
