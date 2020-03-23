@@ -1,15 +1,18 @@
 'use strict';
 
 /*** Initialize global variables */
+
+/** Dataset */
 let dataset = [];
 
-// Tooltip
+/** Tooltip */
 const tooltip = d3.select("body")
                    .append("div")
                    .attr("class","tooltip")
                    .attr("id","tooltip")
                    .style("opacity",0)
 
+/** Heatmap variables */ 
                 
 /*** Heatmap code */
 /** Fetch data */
