@@ -12,6 +12,9 @@ const tooltip = d3.select("body")
                    .style("opacity",0)
 
 /** Global heat map variables */ 
+/* Time units */
+let parseDate = d3.timeParse('%Y');
+let formatDate = d3.timeFormat('%Y');
                 
 
 /*** Heatmap code */
