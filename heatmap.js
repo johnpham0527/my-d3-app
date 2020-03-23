@@ -1,7 +1,6 @@
 'use strict';
 
 /*** Initialize global variables */
-
 /** Dataset */
 let dataset = [];
 
@@ -42,7 +41,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
 }); // Closing brace for last then statement and closing parenthesis for fetch statement
 
+
 /*** Legend code */
+/** Legend gradient */
+
+/** Textual description */
 
 
 /*** To-do's */
