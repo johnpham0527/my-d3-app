@@ -28,6 +28,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
 /** Map dataset to graph */
 
+    /* Mouseover */
+
+    /* Mouse out */
+
 
 /** Set up x-axis*/
 
