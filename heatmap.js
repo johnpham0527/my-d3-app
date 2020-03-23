@@ -29,8 +29,15 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
 /*** To-do's */
 /*
- [ ] Create heatmap separately from legend
+[ ] Study the data: 
+    [ ] Link: https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json
+    [ ] What is this heat map about? Climate change trends by month and by year
+    [ ] Determine the min and max values
+    [ ] Determine how to set up the x-axis: years
+    [ ] Determine how to set up the y-axis
+[ ] Create heat map separately from legend
     [X] Create separate sections for legend and heatmap
- [ ] 
+[ ] Create heat map
+[ ] Create legend
   
 */
