@@ -38,15 +38,20 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     .then(data => dataset = data)
     .then(() => {
         
+        /** Local dataset variables */
+        let baseTemp = dataset.baseTemperature;
+        let monthlyData = dataset.monthlyVariance;
+
         /** Output base temperature */
-        document.getElementById("basetemp").innerHTML = dataset.baseTemperature;
+        document.getElementById("basetemp").innerHTML = baseTemp;
 
         // Debug statement
-        document.getElementById("debug").innerHTML = dataset.monthlyVariance[0].year;
+        document.getElementById("debug").innerHTML = monthlyData;
+        //document.getElementById("debug").innerHTML = dataset.monthlyVariance[0].year;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
-            .domain([d3.min(dataset, (d) => d.Year-1), d3.max(dataset, (d) => d.Year+1)])
+            .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(dataset, (d) => d.Year+1)])
             .range([padding, w - padding]);
 
         const xAxis = d3.axisBottom(xScale)
