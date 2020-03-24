@@ -40,12 +40,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     .then(() => {
         
         /** Output base temperature */
-        let output = document.getElementById("basetemp");
-        output.innerHTML = dataset.baseTemperature;
+        document.getElementById("basetemp").innerHTML = dataset.baseTemperature;
 
         // debug statement
-        output = document.getElementById("debug");
-        output.innerHTML = dataset.monthlyVariance[0].year;
+        document.getElementById("debug").innerHTML = dataset.monthlyVariance[0].year;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
