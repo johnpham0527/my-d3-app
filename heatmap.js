@@ -3,7 +3,6 @@
 /*** Initialize global variables */
 /** Dataset */
 let dataset = {};
-let baseTemp = 0;
 
 /** Tooltip */
 const tooltip = d3.select("body")
@@ -42,7 +41,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Output base temperature */
         document.getElementById("basetemp").innerHTML = dataset.baseTemperature;
 
-        // debug statement
+        // Debug statement
         document.getElementById("debug").innerHTML = dataset.monthlyVariance[0].year;
 
         /** Local heat map variables */
