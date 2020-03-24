@@ -22,7 +22,7 @@ let parseDate = d3.timeParse('%Y');
 let formatYear = d3.timeFormat('%Y');
 let parseMonth = d3.timeParse('%B');
 let formatMonth = d3.timeFormat('%B');
-                
+
 
 /*** Heatmap code */
 
@@ -32,20 +32,29 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     .then(data => dataset = data.slice())
     .then(() => {
         
-/** Local heat map variables */
+        /** Local heat map variables */
+        const xScale = d3.scaleLinear()
+            .domain([d3.min(dataset, (d) => d.Year-1), d3.max(dataset, (d) => d.Year+1)])
+            .range([padding, w - padding]);
+
+        const xAxis = d3.axisBottom(xScale)
+            .ticks(10)
+            .tickFormat(d3.format("d"))
+
+        /** Map dataset to graph */
+
+        /* Mouseover */
+
+        /* Mouse out */
 
 
-/** Map dataset to graph */
+        /** Set up x-axis*/
+        svg.append("g")
+            .attr("id","x-axis")
+            .attr("transform", "translate(0," + (h-padding) + ")")
+            .call(xAxis);
 
-    /* Mouseover */
-
-    /* Mouse out */
-
-
-/** Set up x-axis*/
-
-
-/** Set up y-axis */
+        /** Set up y-axis */
 
 
 
