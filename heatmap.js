@@ -30,6 +30,8 @@ const svg = d3.select("#heatmap")
     .attr("height",h);
 
 
+
+
 /*** Heatmap code */
 
 /** Fetch data */
@@ -38,6 +40,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     .then(data => dataset = data.slice())
     .then(() => {
         
+        // debug statement
+        let output = document.getElementById("debug");
+        output.innerHTML = dataset;
+
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
             .domain([d3.min(dataset, (d) => d.Year-1), d3.max(dataset, (d) => d.Year+1)])
