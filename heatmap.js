@@ -39,8 +39,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     .then(data => dataset = data)
     .then(() => {
         
+        /** Output base temperature */
+        let output = document.getElementById("basetemp");
+        output.innerHTML = dataset.baseTemperature;
+
         // debug statement
-        let output = document.getElementById("debug");
+        output = document.getElementById("debug");
         output.innerHTML = dataset.baseTemperature;
 
         /** Local heat map variables */
