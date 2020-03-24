@@ -45,7 +45,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         // debug statement
         output = document.getElementById("debug");
-        output.innerHTML = dataset.baseTemperature;
+        output.innerHTML = dataset.monthlyVariance;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
