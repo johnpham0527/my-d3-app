@@ -2,7 +2,8 @@
 
 /*** Initialize global variables */
 /** Dataset */
-let dataset = [];
+let dataset = {};
+let baseTemp = 0;
 
 /** Tooltip */
 const tooltip = d3.select("body")
@@ -30,19 +31,17 @@ const svg = d3.select("#heatmap")
     .attr("height",h);
 
 
-
-
 /*** Heatmap code */
 
 /** Fetch data */
 fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/master/global-temperature.json')
     .then(response => response.json())
-    .then(data => dataset = data.slice())
+    .then(data => dataset = data)
     .then(() => {
         
         // debug statement
         let output = document.getElementById("debug");
-        output.innerHTML = dataset;
+        output.innerHTML = dataset.baseTemperature;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
