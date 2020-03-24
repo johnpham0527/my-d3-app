@@ -51,11 +51,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
-            .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(dataset, (d) => d.Year+1)])
+            .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
             .range([padding, w - padding]);
 
         const xAxis = d3.axisBottom(xScale)
-            .ticks(10)
+            .ticks(20)
             .tickFormat(d3.format("d"))
 
         /** Map dataset to graph */
