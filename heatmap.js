@@ -20,6 +20,8 @@ const padding = 60;
 /* Time units */
 let parseDate = d3.timeParse('%Y');
 let formatYear = d3.timeFormat('%Y');
+let parseMonth = d3.timeParse('%B');
+let formatMonth = d3.timeFormat('%B');
                 
 
 /*** Heatmap code */
