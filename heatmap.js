@@ -23,6 +23,12 @@ let formatYear = d3.timeFormat('%Y');
 let parseMonth = d3.timeParse('%B');
 let formatMonth = d3.timeFormat('%B');
 
+/* SVG const */
+const svg = d3.select("#heatmap")
+    .append("svg")
+    .attr("width",w)
+    .attr("height",h);
+
 
 /*** Heatmap code */
 
