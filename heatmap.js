@@ -23,7 +23,7 @@ let formatYear = d3.timeFormat('%Y');
 let parseMonth = d3.timeParse('%B');
 let formatMonth = d3.timeFormat('%B');
 
-const month = (m) => {
+const month = (m) => { //this custom month function returns a new Date object, given a month value
     return new Date(2020,m,1,0,0,0);
 }
 
@@ -57,7 +57,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .range([padding, w - padding]);
 
        const yScale = d3.scaleTime()
-            .domain([d3.max(monthlyData, (d) => month(d.month-1)), d3.min(monthlyData, (d) => month(d.month-1))])
+            .domain([d3.max(monthlyData, (d) => month(d.month-1)), d3.min(monthlyData, (d) => month(d.month-1))]) //run custom month function on data point
             .range([h - padding, padding]);
 
         const xAxis = d3.axisBottom(xScale)
