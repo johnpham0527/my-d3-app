@@ -82,12 +82,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .call(xAxis);
 
         /** Set up y-axis */
-        /*
         svg.append("g")
         .attr("id","y-axis")
         .attr("transform", "translate(" + padding + ",0)")
         .call(yAxis);
-        */
 
 
 }); // Closing brace for last then statement and closing parenthesis for fetch statement
