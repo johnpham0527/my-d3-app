@@ -47,14 +47,13 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         // Debug statement
         document.getElementById("debug").innerHTML = monthlyData;
-        //document.getElementById("debug").innerHTML = dataset.monthlyVariance[0].year;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
             .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
             .range([padding, w - padding]);
 
-        const yScale = d3.scaleTime()
+        const yScale = d3.scaleLinear()
             .domain([d3.max(dataset, (d) => date(d.month)), d3.min(dataset, (d) => date(d.month))])
             .range([h - padding, padding]);
         
@@ -62,8 +61,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .ticks(20)
             .tickFormat(d3.format("d"));
 
-        const yAxis = d3.axisLeft(yScale)
-            .tickFormat(d3.timeFormat("%B"));
+        // Need to map my own time format function
+        //const yAxis = d3.axisLeft(yScale)
+        //    .tickFormat(d3.timeFormat("%B"));
 
         /** Map dataset to graph */
 
