@@ -56,17 +56,26 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
             .range([padding, w - padding]);
 
+        const yScale = d3.scaleLinear()
+            .domain([12.5, 0.5])
+            .range([h - padding, padding]);
+        /*
        const yScale = d3.scaleTime()
             .domain([d3.max(monthlyData, (d) => month(d.month-1)), d3.min(monthlyData, (d) => month(d.month-1))]) //run custom month function on data point
             .range([h - padding, padding]);
+        */
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
             .tickFormat(d3.format("d"));
 
         // Need to map my own time format function
+        /*
         const yAxis = d3.axisLeft(yScale)
             .tickFormat(d3.timeFormat("%B"));
+        */
+       const yAxis = d3.axisLeft(yScale)
+            .tickFormat(d3.format("d"));
 
         /** Map dataset to graph */
 
@@ -82,11 +91,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .call(xAxis);
 
         /** Set up y-axis */
+        
         svg.append("g")
         .attr("id","y-axis")
         .attr("transform", "translate(" + padding + ",0)")
         .call(yAxis);
-
+        
 
 }); // Closing brace for last then statement and closing parenthesis for fetch statement
 
