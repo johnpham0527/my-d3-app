@@ -23,8 +23,35 @@ let formatYear = d3.timeFormat('%Y');
 let parseMonth = d3.timeParse('%B');
 let formatMonth = d3.timeFormat('%B');
 
-const month = (m) => { //this custom month function returns a new Date object, given a month value
-    return new Date(2020,m,1,0,0,0);
+const month = (m) => { //this custom month function returns the full month name
+    switch (m) {
+        case 1:
+            return "January";
+        case 2:
+            return "February";
+        case 3:
+            return "March";
+        case 4:
+            return "April";
+        case 5:
+            return "May";
+        case 6:
+            return "June";
+        case 7:
+            return "July";
+        case 8:
+            return "August";
+        case 9:
+            return "September";
+        case 10:
+            return "October";
+        case 11:
+            return "November";
+        case 12:
+            return "December";
+        default:
+            break;
+    }
 }
 
 /* SVG const */
@@ -45,11 +72,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         let baseTemp = dataset.baseTemperature;
         let monthlyData = dataset.monthlyVariance;
 
-        /** Output base temperature */
+        /** Output base temperature into description*/
         document.getElementById("basetemp").innerHTML = baseTemp;
 
         // Debug statement
-        document.getElementById("debug").innerHTML = monthlyData[1].month;
+        //document.getElementById("debug").innerHTML = monthlyData[1].month;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
@@ -57,13 +84,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .range([padding, w - padding]);
 
         const yScale = d3.scaleLinear()
-            .domain([12.5, 0.5])
+            .domain([12.5, 0.5]) //use 0.5 as min and 12.5 as max to offset the y-Axis
             .range([h - padding, padding]);
-        /*
-       const yScale = d3.scaleTime()
-            .domain([d3.max(monthlyData, (d) => month(d.month-1)), d3.min(monthlyData, (d) => month(d.month-1))]) //run custom month function on data point
-            .range([h - padding, padding]);
-        */
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
@@ -71,13 +93,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickFormat(d3.format("d"));
 
         // Need to map my own time format function
-        /*
-        const yAxis = d3.axisLeft(yScale)
-            .tickFormat(d3.timeFormat("%B"));
-        */
        const yAxis = d3.axisLeft(yScale)
             .tickSizeOuter(0) //do not show the outer tick
-            .tickFormat(d3.format("d"));
+            .tickFormat((d) => month(d)); //run the custom month function to output full month name
 
         /** Map dataset to graph */
 
@@ -93,7 +111,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .call(xAxis);
 
         /** Set up y-axis */
-        
         svg.append("g")
         .attr("id","y-axis")
         .attr("transform", "translate(" + padding + ",0)")
