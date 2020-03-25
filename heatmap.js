@@ -67,6 +67,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
+            .tickSizeOuter(0) //do not show the outer tick
             .tickFormat(d3.format("d"));
 
         // Need to map my own time format function
@@ -75,6 +76,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickFormat(d3.timeFormat("%B"));
         */
        const yAxis = d3.axisLeft(yScale)
+            .tickSizeOuter(0) //do not show the outer tick
             .tickFormat(d3.format("d"));
 
         /** Map dataset to graph */
