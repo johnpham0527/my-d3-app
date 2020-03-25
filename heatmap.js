@@ -23,12 +23,15 @@ let formatYear = d3.timeFormat('%Y');
 let parseMonth = d3.timeParse('%B');
 let formatMonth = d3.timeFormat('%B');
 
+const month = (m) => {
+    return new Date(2020,m,1,0,0,0);
+}
+
 /* SVG const */
 const svg = d3.select("#heatmap")
     .append("svg")
     .attr("width",w)
     .attr("height",h);
-
 
 /*** Heatmap code */
 
@@ -46,23 +49,23 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         document.getElementById("basetemp").innerHTML = baseTemp;
 
         // Debug statement
-        document.getElementById("debug").innerHTML = monthlyData;
+        document.getElementById("debug").innerHTML = monthlyData[0].month;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
             .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
             .range([padding, w - padding]);
 
-        const yScale = d3.scaleLinear()
-            .domain([d3.max(dataset, (d) => date(d.month)), d3.min(dataset, (d) => date(d.month))])
+       const yScale = d3.scaleLinear()
+            .domain(1,12)
             .range([h - padding, padding]);
-        
+
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
             .tickFormat(d3.format("d"));
 
         // Need to map my own time format function
-        //const yAxis = d3.axisLeft(yScale)
+        const yAxis = d3.axisLeft(yScale)
         //    .tickFormat(d3.timeFormat("%B"));
 
         /** Map dataset to graph */
