@@ -62,7 +62,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .ticks(20)
             .tickFormat(d3.format("d"));
 
-
+        const yAxis = d3.axisLeft(yScale)
+            .tickFormat(d3.timeFormat("%B"));
 
         /** Map dataset to graph */
 
