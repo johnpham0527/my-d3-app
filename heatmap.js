@@ -65,8 +65,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickFormat(d3.format("d"));
 
         // Need to map my own time format function
-        //const yAxis = d3.axisLeft(yScale)
-        //    .tickFormat(d3.timeFormat("%B"));
+        const yAxis = d3.axisLeft(yScale)
+            .tickFormat(d3.timeFormat("%B"));
 
         /** Map dataset to graph */
 
