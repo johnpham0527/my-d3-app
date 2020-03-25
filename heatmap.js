@@ -49,7 +49,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         document.getElementById("basetemp").innerHTML = baseTemp;
 
         // Debug statement
-        document.getElementById("debug").innerHTML = monthlyData[0].month;
+        document.getElementById("debug").innerHTML = monthlyData[1].month;
 
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
@@ -57,7 +57,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .range([padding, w - padding]);
 
        const yScale = d3.scaleTime()
-            .domain([d3.min(monthlyData, (d) => d.month), d3.max(monthlyData, (d) => d.month)])
+            .domain([d3.max(monthlyData, (d) => month(d.month-1)), d3.min(monthlyData, (d) => month(d.month-1))])
             .range([h - padding, padding]);
 
         const xAxis = d3.axisBottom(xScale)
