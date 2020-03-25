@@ -54,16 +54,15 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
             .range([padding, w - padding]);
 
-        /*
-        //Need to scale y axis to months
         const yScale = d3.scaleTime()
-            .domain([d3.max(dataset, (d) => date(d.Time)), d3.min(dataset, (d) => date(d.Time))])
-            .range([h - padding, padding])
-        */
-
+            .domain([d3.max(dataset, (d) => date(d.month)), d3.min(dataset, (d) => date(d.month))])
+            .range([h - padding, padding]);
+        
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
-            .tickFormat(d3.format("d"))
+            .tickFormat(d3.format("d"));
+
+
 
         /** Map dataset to graph */
 
