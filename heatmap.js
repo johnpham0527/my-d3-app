@@ -106,12 +106,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("data-xvalue", (d) => d.year)
             .attr("data-yvalue", (d) => d.month)
             .attr("x", (d) => xScale(d.year)) //scale the location of the x value (year) using xScale
-        
             .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
-            
             .attr("width", (d) => w / monthlyData.length) //set the width of each cell equal to the overall width dividing by the number of data elements
             .attr("height", (d) => h - yScale(d.month + 1))
-            .attr("fill", "darkslateblue") //I will need to figure out how to fill based on a gradient of at least four different colors
+
+        /** Gradient fill */
+            .attr("fill", "darkslateblue")
 
 
         /** Data attributes */
@@ -172,6 +172,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [ ] The x-axis should have tick labels with the years between 1754 and 2015
     [ ] The y-axis should have tick labels with the full name of the months of the year
     [ ] Figure out the length and width of each cell
+    [ ] Determine at least four gradient colors
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
 [ ] Create legend
