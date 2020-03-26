@@ -98,6 +98,19 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickFormat((d) => month(d)); //run the custom month function to output full month name
 
         /** Map dataset to graph */
+        svg.selectAll("rect")
+            .data(monthlyVariance)
+            .append("rect")
+            .attr("class", "cell")
+            .attr("data-xvalue", (d) => d.year)
+            .attr("data-yvalue", (d) => d.month)
+            .attr("x", (d) => xScale(d.year)) //scale the location of the x value (year) using xScale
+            .attr("y", (d) => yScale(d.month)) //scale the location y value (month) using yScale
+            .attr("width", (d) => w / monthlyVariance.length) //set the width of each cell equal to the overall width dividing by the number of data elements
+            .attr("height", (d) => h - yScale(d.month))
+            .attr("fill", "darkslateblue") //I will need to figure out how to fill based on a gradient
+
+
 
 
         /** Tool tip */
