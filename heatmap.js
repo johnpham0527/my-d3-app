@@ -134,7 +134,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .range([h - padding, padding]);
 
         const legendScale = d3.scaleLinear()
-            .domain(minTemp, maxTemp)
+            .domain([minTemp, maxTemp])
             .range([padding, w/4]);
 
         const xAxis = d3.axisBottom(xScale)
@@ -224,9 +224,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .data(unitTicks)
             .enter() 
             .append("rect")
-            .attr("x", (d) => legendScale(d))
+            //.attr("x", (d) => legendScale(d))
+            .attr("x", padding + legendCellWidth * 0)
             .attr("y",h - padding/2)
-            .attr("width", legendcellWidth)
+            .attr("width", legendCellWidth)
             .attr("height", cellHeight)
             /*
             .style("fill", (d) => {
