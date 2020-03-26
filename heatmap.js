@@ -122,18 +122,19 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Tool tip */
         /* Mouseover */
-        .on("mouseover", (d) => {
-            tooltip.style("opacity, 0.8")
-                .attr("id", "tooltip")
-                .html(d.year + " - " + month(d.month))
-                .style("left", d3.event.pageX + 5 + "px") //x-axis offset
-                .style("top", d3.event.pageY - 5 + "px") //y-axis offset
-        })
+            .on("mouseover", (d) => {
+                tooltip.style("opacity, 0.8")
+                    .attr("id", "tooltip")
+                    .attr("data-year", d.year)
+                    .html(d.year + " - " + month(d.month))
+                    .style("left", d3.event.pageX + 5 + "px") //x-axis offset
+                    .style("top", d3.event.pageY - 5 + "px") //y-axis offset
+            })
 
         /* Mouse out */
-        .on("mouseout", (d) => {
-            tooltip.style("opacity", 0)
-        });
+            .on("mouseout", (d) => {
+                tooltip.style("opacity", 0)
+            });
 
         /** Set up x-axis*/
         svg.append("g")
@@ -172,6 +173,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [ ] The y-axis should have tick labels with the full name of the months of the year
     [ ] Figure out the length and width of each cell
 [ ] Create the tool tips
+    [ ] Debug why tooltip doesn't appear
 [ ] Create legend
     [ ] The legend should have at least 4 different fill colors
 */
