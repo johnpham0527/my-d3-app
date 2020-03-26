@@ -220,7 +220,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Legend */
         const legend = svg.append("g")
             .attr("id","legend");
-
+/*
         legend.selectAll("rect")
             .data(unitTicks)
             .enter() 
@@ -229,7 +229,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("y",h - padding/2)
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
-            
             .style("fill", (d) => {
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
@@ -245,6 +244,17 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
                 }
                 return color;
             })
+    */
+
+   legend.selectAll("rect")
+   .data(colorArray)
+   .enter() 
+   .append("rect")
+   .attr("x", (d, i) => legendScale(i))
+   .attr("y",h - padding/2)
+   .attr("width", legendCellWidth)
+   .attr("height", cellHeight)
+   .style("fill", (d) => d)
             
 
 
