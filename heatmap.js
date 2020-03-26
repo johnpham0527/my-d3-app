@@ -89,8 +89,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .range([h - padding, padding]);
 
         const legendScale = d3.scaleLinear()
-            .domain([minTemp, maxTemp])
-            .range([padding, w/3]);
+            .domain(legendTickArray)
+            .range([legendCellWidth,0]);
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
@@ -171,11 +171,13 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .call(yAxis);
 
         /** Set up legend axis */
+        /*
         svg.append("g")
             //.attr("id","legend-axis")
             //.attr("transform", "translate(" + padding + "," + w - padding + ")")
             .attr("transform", "translate(" + (w - padding - legendScale(12)) + "," + (padding/12 + cellHeight) + ")")
             .call(legendAxis);
+        */
 
         /** Legend */
         const legend = svg.append("g")
@@ -185,7 +187,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .data(colorArray) //use the color array as the dataset
             .enter() 
             .append("rect")
-            .attr("x", (d, i) => w - padding - legendScale(i)) //map the "ith" element to legendScale
+            .attr("x", (d, i) => (w-padding-legendCellWidth*colorArray.length) + legendCellWidth*i) //place it in the top right location
             .attr("y", padding/12)
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
