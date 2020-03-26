@@ -85,7 +85,6 @@ const svg = d3.select("#heatmap")
     .attr("width",w)
     .attr("height",h)
 
-
 /*** Heatmap code */
 
 /** Fetch data */
@@ -212,11 +211,30 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Set up y-axis */
         svg.append("g")
-        .attr("id","y-axis")
-        .attr("transform", "translate(" + padding + ",0)")
-        .call(yAxis);
+            .attr("id","y-axis")
+            .attr("transform", "translate(" + padding + ",0)")
+            .call(yAxis);
 
-        /** Legend axis */
+        /** Legend */
+        const legend = svg.append("g")
+            .attr("id","legend");
+
+        /** Append rects to legend group */
+        legend.append("rect")
+            .attr("x", padding)
+            .attr("y", h - padding/2)
+            .attr("width", cellWidth*10)
+            .attr("height", cellHeight)
+            .style("fill", "midnightblue");
+            
+        legend.append("rect")
+            .attr("x", padding + cellWidth*10)
+            .attr("y", h - padding/2)
+            .attr("width", cellWidth*10)
+            .attr("height", cellHeight)
+            .style("fill", "mediumblue");
+
+
         /*
         svg.append("g")
         .attr("id","legend")
@@ -224,13 +242,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         .call(legendAxis);
         */
         
-        /** Set up legend rectangles */
-        svg.append("rect")
-        .attr("x", padding)
-        .attr("y", h - padding/2)
-        .attr("width", cellWidth*10)
-        .attr("height", cellHeight)
-        .style("fill", "midnightblue")
+
 
         /* Legend axis */
         /*
