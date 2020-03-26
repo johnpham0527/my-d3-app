@@ -130,6 +130,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .domain([12.5, 0.5]) //use 0.5 as min and 12.5 as max to offset the y-Axis
             .range([h - padding, padding]);
 
+        const legendScale = d3.scaleLinear()
+            .domain(minTemp, maxTemp)
+            .range([padding, w/4]);
+
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
             .tickSizeOuter(0) //do not show the outer tick
