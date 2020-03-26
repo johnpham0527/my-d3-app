@@ -133,9 +133,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickFormat(d3.format("d"));
 
         // Need to map my own time format function
-       const yAxis = d3.axisLeft(yScale)
+        const yAxis = d3.axisLeft(yScale)
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat((d) => month(d)); //run the custom month function to output full month name
+
 
         /** Map dataset to graph */
         svg.selectAll("rect")
@@ -147,7 +148,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("data-yvalue", (d) => d.month)
             .attr("x", (d) => xScale(d.year)) //scale the location of the x value (year) using xScale
             .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
-            .attr("width", (d) => w / monthlyData.length) //set the width of each cell equal to the overall width dividing by the number of data elements
+            //.attr("width", (d) => w / monthlyData.length) //set the width of each cell equal to the overall width dividing by the number of data elements
+            .attr("width", (d) => xScale(d.year))
             .attr("height", (d) => h - yScale(d.month + 1))
 
         /** Gradient fill */
