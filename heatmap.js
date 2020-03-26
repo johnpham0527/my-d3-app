@@ -205,14 +205,21 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         .attr("transform", "translate(" + padding + ",0)")
         .call(yAxis);
         
+        /** Set up legend rectangles */
+        svg.append("rect")
+        .attr("x", padding)
+        .attr("y", h - padding/2)
+        .attr("width", cellWidth*10)
+        .attr("height", cellHeight)
+        .style("fill", "midnightblue")
+        
+
+        /** Set up legend text */
 
 }); // Closing brace for last then statement and closing parenthesis for fetch statement
 
 
-/*** Legend code */
-/** Legend gradient */
 
-/** Textual description */
 
 
 /*** To-do's */
@@ -239,5 +246,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
 [ ] Create legend
-    [ ] The legend should have at least 4 different fill colors
+    [ ] Create a legend axis
+    [ ] Create grid boxes
+    [ ] Leverage unitTicks array to generate tick labels
+    [ ] Leverage unitTicks array and fill to generate gradient color boxes
 */
