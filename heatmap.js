@@ -114,12 +114,16 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             unitTicks.push(Math.round(num * 100) /100);
         }
 
+        // Debug output
+        document.getElementById("debug").innerHTML = unitTicks;
+
         /** Local heat map variables */
         const minYear = d3.min(monthlyData, (d) => d.year-1);
         const maxYear = d3.max(monthlyData, (d) => d.year+1);
         
         const cellHeight = (h - padding*2) / 12;
         const cellWidth = (w - padding*2) / (maxYear - minYear);
+        const legendCellWidth = cellWidth * 10;
 
         const xScale = d3.scaleLinear()
             .domain([minYear, maxYear])
@@ -129,11 +133,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .domain([12.5, 0.5]) //use 0.5 as min and 12.5 as max to offset the y-Axis
             .range([h - padding, padding]);
 
-        /*
         const legendScale = d3.scaleLinear()
             .domain(minTemp, maxTemp)
             .range([padding, w/4]);
-        */
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
@@ -161,8 +163,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
             .attr("width", cellWidth)
             .attr("height", cellHeight)
-
-        /** Gradient fill */
+            /* Gradient fill */
             .style("fill", (d) => {
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
@@ -219,50 +220,65 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         const legend = svg.append("g")
             .attr("id","legend");
 
+        legend.selectAll("rect")
+            .data(unitTicks)
+            .enter() 
+            .append("rect")
+            .attr("x", (d) => legendScale(d))
+            .attr("y",h - padding/2)
+            .attr("width", legendcellWidth)
+            .attr("height", cellHeight)
+            /*
+            .style("fill", (d) => {
+                let color = "darkred"; 
+                for (let i = 0; i < unitTicks.length; i++) {
+                    let currentTick = unitTicks[i];
+                    let thisTemp = baseTemp + d.variance;
+                    if (currentTick < thisTemp) {
+                        continue;
+                    }
+                    else {
+                        color = colorScale(i);
+                        break;
+                    }
+                }
+                return color;
+            })
+            */
+
+
         /** Append rects to legend group */
+        /*
         legend.append("rect")
-            .attr("x", padding)
+            .attr("x", padding + legendCellWidth * 0)
             .attr("y", h - padding/2)
-            .attr("width", cellWidth*10)
+            .attr("width", legendCellWidth)
             .attr("height", cellHeight)
             .style("fill", "midnightblue");
             
         legend.append("rect")
-            .attr("x", padding + cellWidth*10)
+            .attr("x", padding + legendCellWidth * 1)
             .attr("y", h - padding/2)
-            .attr("width", cellWidth*10)
+            .attr("width", legendCellWidth)
             .attr("height", cellHeight)
             .style("fill", "mediumblue");
 
-
-        /*
-        svg.append("g")
-        .attr("id","legend")
-        .attr("transform", "translate(0," + h + ")")
-        .call(legendAxis);
+        legend.append("rect")
+            .attr("x", padding + legendCellWidth * 2)
+            .attr("y", h - padding/2)
+            .attr("width", legendCellWidth)
+            .attr("height", cellHeight)
+            .style("fill", "royalblue");
         */
-        
 
-
-        /* Legend axis */
         /*
-       svg.selectAll("rect")
-       .data(unitTicks)
-       .enter()
-       .append("rect")
-       .attr("x", (d) => legendScale(d)) //scale the location of the x value (year) using xScale
-       .attr("y", h - padding) //scale the location y value (month) using yScale
-       .attr("width", cellWidth)
-       .attr("height", cellHeight)
-       /*
-        
+                Midnight blue -> medium blue -> royal blue - > light cyan -> light yellow -> peach puff -> 
+        salmon <- crimson <- Dark red
+        */
 
         /** Set up legend text */
 
 }); // Closing brace for last then statement and closing parenthesis for fetch statement
-
-
-
 
 
 /*** To-do's */
@@ -293,4 +309,5 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [ ] Create grid boxes
     [ ] Leverage unitTicks array to generate tick labels
     [ ] Leverage unitTicks array and fill to generate gradient color boxes
+[ ] Delete commented out or unneeded code
 */
