@@ -95,15 +95,15 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat(d3.format("d"));
 
-        // Need to map my own time format function
         const yAxis = d3.axisLeft(yScale)
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat((d) => month(d)); //run the custom month function to output full month name
-
         
-        const legendAxis = d3.axisTop(legendScale)
+        const legendAxis = d3.axisBottom(legendScale)
+            //.ticks(8, ",f")
             .tickSizeOuter(0) //do not show the outer tick
-            .tickFormat(d3.format("d"));
+            .tickValues([1.68, 3.21, 4.74, 6.26, 7.79, 9.31, 10.84, 12.36])
+            .tickFormat(d3.format(".2f"));
         
 
         /** Map dataset to graph */
@@ -167,6 +167,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("id","y-axis")
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
+
+        /** Set up legend axis */
+        svg.append("g")
+            .attr("id","legend-axis")
+            .attr("transform", "translate(" + padding + "," + w - padding + ")")
+            .call(legendAxis);
 
         /** Legend */
         const legend = svg.append("g")
