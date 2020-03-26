@@ -220,72 +220,17 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Legend */
         const legend = svg.append("g")
             .attr("id","legend");
-/*
+
         legend.selectAll("rect")
-            .data(unitTicks)
+            .data(colorArray) //use the color array as the dataset
             .enter() 
             .append("rect")
-            .attr("x", (d) => legendScale(d))
+            .attr("x", (d, i) => legendScale(i)) //map the "ith" element to legendScale
             .attr("y",h - padding/2)
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
-            .style("fill", (d) => {
-                let color = "darkred"; 
-                for (let i = 0; i < unitTicks.length; i++) {
-                    let currentTick = unitTicks[i];
-                    let thisTemp = baseTemp + d.variance;
-                    if (currentTick < thisTemp) {
-                        continue;
-                    }
-                    else {
-                        color = colorScale(i);
-                        break;
-                    }
-                }
-                return color;
-            })
-    */
+            .style("fill", (d) => d)
 
-   legend.selectAll("rect")
-   .data(colorArray)
-   .enter() 
-   .append("rect")
-   .attr("x", (d, i) => legendScale(i))
-   .attr("y",h - padding/2)
-   .attr("width", legendCellWidth)
-   .attr("height", cellHeight)
-   .style("fill", (d) => d)
-            
-
-
-        /** Append rects to legend group */
-        /*
-        legend.append("rect")
-            .attr("x", padding + legendCellWidth * 0)
-            .attr("y", h - padding/2)
-            .attr("width", legendCellWidth)
-            .attr("height", cellHeight)
-            .style("fill", "midnightblue");
-            
-        legend.append("rect")
-            .attr("x", padding + legendCellWidth * 1)
-            .attr("y", h - padding/2)
-            .attr("width", legendCellWidth)
-            .attr("height", cellHeight)
-            .style("fill", "mediumblue");
-
-        legend.append("rect")
-            .attr("x", padding + legendCellWidth * 2)
-            .attr("y", h - padding/2)
-            .attr("width", legendCellWidth)
-            .attr("height", cellHeight)
-            .style("fill", "royalblue");
-        */
-
-        /*
-                Midnight blue -> medium blue -> royal blue - > light cyan -> light yellow -> peach puff -> 
-        salmon <- crimson <- Dark red
-        */
 
         /** Set up legend text */
 
@@ -313,6 +258,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [ ] Debug: the cells are shooting past the x-axis
     [X] Debug: there is white space between each cell width
     [X] A few of the colors are not on the color scale; decided to set default color to crimsonred
+    [ ] For svg.selectAll, implement style fill use (d,i) => ... instead of using a for loop, which is slow
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
 [ ] Create legend
