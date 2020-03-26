@@ -83,7 +83,7 @@ const colorScale = (num) => { //given a number, return a color based on the grad
 const svg = d3.select("#heatmap")
     .append("svg")
     .attr("width",w)
-    .attr("height",h+padding)
+    .attr("height",h)
 
 
 /*** Heatmap code */
