@@ -102,8 +102,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickFormat((d) => month(d)); //run the custom month function to output full month name
         
         const legendAxis = d3.axisBottom(legendScale)
-            //.ticks(8, ",f")
-            .tickSizeOuter(0) //do not show the outer tick
             .tickValues(legendTickArray)
             .tickFormat(d3.format(".2f"));
         
@@ -170,20 +168,15 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
 
-        /** Set up legend axis */
-        
+        /** Legend Axis */
         svg.append("g")
-            //.attr("id","legend-axis")
-            //.attr("transform", "translate(" + padding + "," + w - padding + ")")
             .attr("transform", "translate(" + (w-padding-legendCellWidth*colorArray.length) + "," + (padding/12 + cellHeight) + ")")
             .call(legendAxis);
-        
 
-        /** Legend */
-        const legend = svg.append("g")
-            .attr("id","legend");
-
-        legend.selectAll("rect")
+        /** Legend Cells */
+        svg.append("g")
+            .attr("id","legend")
+            .selectAll("rect")
             .data(colorArray) //use the color array as the dataset
             .enter() 
             .append("rect")
@@ -192,9 +185,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
             .style("fill", (d) => d)
-
-
-        /** Set up legend text */
 
 }); // Closing brace for last then statement and closing parenthesis for fetch statement
 
