@@ -13,9 +13,9 @@ const tooltip = d3.select("body")
 
 /** Global heat map variables */ 
 /* Graph dimensions */
-const w = 1000;
-const h = 500;
-const padding = 60;
+const w = 1310;
+const h = 420;
+const padding = 72;
 
 /* Time units */
 let parseDate = d3.timeParse('%Y');
@@ -55,28 +55,7 @@ const month = (m) => { //this custom month function returns the full month name
 }
 
 const colorScale = (num) => { //given a number, return a color based on the gradient scale
-    switch (num) {
-        case 0:
-            return "midnightblue";
-        case 1:
-            return "mediumblue";
-        case 2:
-            return "royalblue";
-        case 3:
-            return "lightcyan";
-        case 4:
-            return "lightyellow";
-        case 5:
-            return "peachpuff";
-        case 6:
-            return "salmon";
-        case 7:
-            return "crimson";
-        case 8:
-            return "darkred";
-        default:
-            return "darkred";
-    }
+   return colorArray[num];
 }
 
 const colorArray = ["midnightblue", "mediumblue", "royalblue", "lightcyan", "lightyellow", "peachpuff", "salmon", "crimson", "darkred"];
@@ -117,8 +96,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         }
 
         /** Local heat map variables */
-        const minYear = d3.min(monthlyData, (d) => d.year-1);
-        const maxYear = d3.max(monthlyData, (d) => d.year+1);
+        const minYear = d3.min(monthlyData, (d) => d.year);
+        const maxYear = d3.max(monthlyData, (d) => d.year);
         
         const cellHeight = (h - padding*2) / 12;
         const cellWidth = (w - padding*2) / (maxYear - minYear);
@@ -165,6 +144,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("width", cellWidth)
             .attr("height", cellHeight)
             /* Gradient fill */
+            
             .style("fill", (d) => {
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
@@ -180,6 +160,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
                 }
                 return color;
             })
+            
+           /*
+            .style("fill", (d,i) => {
+                colorArray[i]
+            })
+            */
 
 
         /** Data attributes */
