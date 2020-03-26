@@ -233,7 +233,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         Midnight blue -> medium blue -> royal blue - > light cyan -> light yellow -> peach puff -> 
         salmon <- crimson <- Dark red
     [ ] Debug: the height for December cells isn't quite right
-    [ ] Debug: there is white space between each cell width
+    [ ] Debug: the cells are shooting past the x-axis
+    [X] Debug: there is white space between each cell width
     [ ] A few of the colors are not on the color scale (i.e. it is defaulting to green)
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
