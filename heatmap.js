@@ -119,8 +119,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         const minYear = d3.min(monthlyData, (d) => d.year-1);
         const maxYear = d3.max(monthlyData, (d) => d.year+1);
         
-        const cellHeight = (h-padding*2)/12;
-        const cellWidth = (d) => (xScale(d.year));
+        const cellHeight = (h - padding*2) / 12;
+        const cellWidth = (w - padding*2) / (maxYear - minYear);
 
         const xScale = d3.scaleLinear()
             .domain([minYear, maxYear])
