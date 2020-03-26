@@ -54,6 +54,31 @@ const month = (m) => { //this custom month function returns the full month name
     }
 }
 
+const colorScale = (num) => { //given a number, return a color based on the gradient scale
+    switch (num) {
+        case 0:
+            return "midnightblue";
+        case 1:
+            return "mediumblue";
+        case 2:
+            return "royalblue";
+        case 3:
+            return "lightcyan";
+        case 4:
+            return "lightyellow";
+        case 5:
+            return "peachpuff";
+        case 6:
+            return "salmon";
+        case 7:
+            return "crimson";
+        case 8:
+            return "darkred";
+        default:
+            return "black";
+    }
+}
+
 /* SVG const */
 const svg = d3.select("#heatmap")
     .append("svg")
@@ -75,9 +100,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Output base temperature into description*/
         document.getElementById("basetemp").innerHTML = baseTemp;
 
-        // Debug statement
-        //document.getElementById("debug").innerHTML = monthlyData[1].month;
-
         /** Math and variables to figure out unit lengths and unit ticks */
         let allTemps = [];
         for (let i = 0; i < monthlyData.length; i++) {
@@ -91,6 +113,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             let num = minTemp + i*unitLength;
             unitTicks.push(Math.round(num * 100) /100);
         }
+
+        // Debug statement
+        //document.getElementById("debug").innerHTML = monthlyData[1].month;
         document.getElementById("debug").innerHTML = unitTicks;
 
         /** Local heat map variables */
