@@ -110,8 +110,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("height", (d) => h - yScale(d.month))
             .attr("fill", "darkslateblue") //I will need to figure out how to fill based on a gradient
 
-
-
+        /** Data attributes */
+            .attr("data-year", (d) => d.year)
+            .attr("data-month", (d) => month(d.month))
+            .attr("data-variance", (d) => d.variance)
+            .attr("data-temp", (d) => baseTemp + d.variance)
 
         /** Tool tip */
         /* Mouseover */
