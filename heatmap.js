@@ -114,9 +114,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             unitTicks.push(Math.round(num * 100) /100);
         }
 
-        // Debug output
-        document.getElementById("debug").innerHTML = unitTicks;
-
         /** Local heat map variables */
         const minYear = d3.min(monthlyData, (d) => d.year-1);
         const maxYear = d3.max(monthlyData, (d) => d.year+1);
@@ -224,8 +221,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .data(unitTicks)
             .enter() 
             .append("rect")
-            //.attr("x", (d) => legendScale(d))
-            .attr("x", padding + legendCellWidth * 0)
+            .attr("x", (d) => legendScale(d))
+            //.attr("x", padding + legendCellWidth * 0)
             .attr("y",h - padding/2)
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
