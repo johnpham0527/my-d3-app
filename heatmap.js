@@ -144,6 +144,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat((d) => month(d)); //run the custom month function to output full month name
 
+        const legendAxis = d3.axisBottom(legendScale)
+            .tickSizeOuter(0) //do not show the outer tick
+            .tickFormat(d3.format("d"));
 
         /** Map dataset to graph */
         svg.selectAll("rect")
