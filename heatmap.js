@@ -79,6 +79,8 @@ const colorScale = (num) => { //given a number, return a color based on the grad
     }
 }
 
+const colorArray = ["midnightblue", "mediumblue", "royalblue", "lightcyan", "lightyellow", "peachpuff", "salmon", "crimson", "darkred"];
+
 /* SVG const */
 const svg = d3.select("#heatmap")
     .append("svg")
@@ -120,7 +122,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         
         const cellHeight = (h - padding*2) / 12;
         const cellWidth = (w - padding*2) / (maxYear - minYear);
-        const legendCellWidth = cellWidth * 10;
+        //const legendCellWidth = cellWidth * 10;
+        const legendCellWidth = (w/3) / (maxTemp - minTemp);
+
 
         const xScale = d3.scaleLinear()
             .domain([minYear, maxYear])
@@ -132,7 +136,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         const legendScale = d3.scaleLinear()
             .domain([minTemp, maxTemp])
-            .range([padding, w/4]);
+            .range([padding, w/3]);
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
@@ -222,11 +226,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .enter() 
             .append("rect")
             .attr("x", (d) => legendScale(d))
-            //.attr("x", padding + legendCellWidth * 0)
             .attr("y",h - padding/2)
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
-            /*
+            
             .style("fill", (d) => {
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
@@ -242,7 +245,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
                 }
                 return color;
             })
-            */
+            
 
 
         /** Append rects to legend group */
