@@ -76,9 +76,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         
         const cellHeight = (h - padding*2) / 12;
         const cellWidth = (w - padding*2) / (maxYear - minYear);
-        //const legendCellWidth = cellWidth * 10;
         const legendCellWidth = (w/3) / (maxTemp - minTemp);
-
 
         const xScale = d3.scaleLinear()
             .domain([minYear, maxYear])
@@ -102,11 +100,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat((d) => month(d)); //run the custom month function to output full month name
 
-        /*
-        const legendAxis = d3.axisBottom(legendScale)
+        
+        const legendAxis = d3.axisTop(legendScale)
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat(d3.format("d"));
-        */
+        
 
         /** Map dataset to graph */
         svg.selectAll("rect")
@@ -119,7 +117,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("width", cellWidth)
             .attr("height", cellHeight)
             /* Gradient fill */
-            
             .style("fill", (d) => {
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
@@ -135,13 +132,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
                 }
                 return color;
             })
-            
-           /*
-            .style("fill", (d,i) => {
-                colorArray[i]
-            })
-            */
-
 
         /** Data attributes */
             .attr("data-year", (d) => d.year)
@@ -186,8 +176,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .data(colorArray) //use the color array as the dataset
             .enter() 
             .append("rect")
-            .attr("x", (d, i) => legendScale(i)) //map the "ith" element to legendScale
-            .attr("y",h - padding/2)
+            .attr("x", (d, i) => w - padding - legendScale(i)) //map the "ith" element to legendScale
+            .attr("y", padding/12)
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
             .style("fill", (d) => d)
