@@ -215,7 +215,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Legend axis */
         svg.append("g")
         .attr("id","legend")
-        .attr("transform", "translate(" + padding + "," + (h-padding) + ")")
+        .attr("transform", "translate(0," + h + ")")
         .call(legendAxis);
         
         /** Set up legend rectangles */
