@@ -118,9 +118,18 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Tool tip */
         /* Mouseover */
+        .on("mouseover", (d) => {
+            tooltip.style("opacity, 0.8")
+                .attr("id", "tooltip")
+                .html(d.year + " - " + month(d.month))
+                .style("left", d3.event.pageX + 5 + "px") //x-axis offset
+                .style("top", d3.event.pageY - 5 + "px") //y-axis offset
+        })
 
         /* Mouse out */
-
+        .on("mouseout", (d) => {
+            tooltip.style("opacity", 0)
+        });
 
         /** Set up x-axis*/
         svg.append("g")
