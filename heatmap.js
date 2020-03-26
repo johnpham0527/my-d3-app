@@ -83,7 +83,7 @@ const colorScale = (num) => { //given a number, return a color based on the grad
 const svg = d3.select("#heatmap")
     .append("svg")
     .attr("width",w)
-    .attr("height",h)
+    .attr("height",h+padding)
 
 
 /*** Heatmap code */
@@ -180,15 +180,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /* Mouseover */
             .on("mouseover", (d) => {
                 tooltip.transition().duration(200)
-                    .style("opacity, 0.8")
-                    .style('left', (d3.event.pageX ) + 'px')
-                    .style('top', (d3.event.pageY / 1.5) + 'px')
-                    //.attr("id", "tooltip")
-                    //.attr("data-year", d.year)
-                    //.html(d.year + " - " + d.month)
-                    //.style("left", d3.event.pageX + 5 + "px") //x-axis offset
-                    //.style("top", d3.event.pageY - 5 + "px") //y-axis offset
-                tooltip.html("Please show up")
+                    .attr("id", "tooltip")
+                    .attr("data-year", d.year)
+                    .html(d.year + " - " + d.month)
+                    .style("left", d3.event.pageX + 5 + "px") //x-axis offset
+                    .style("top", d3.event.pageY - 5 + "px") //y-axis offset
             })
 
         /* Mouse out */
