@@ -9,7 +9,7 @@ const tooltip = d3.select("body")
                    .append("div")
                    .attr("class","tooltip")
                    .attr("id","tooltip")
-                   .style("opacity",0)
+                   .style("opacity",0);
 
 /** Global heat map variables */ 
 /* Graph dimensions */
@@ -99,8 +99,10 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Map dataset to graph */
         svg.selectAll("rect")
-            .data(monthlyVariance)
+            .data(monthlyData)
+            
             .append("rect")
+
             .attr("class", "cell")
             .attr("data-xvalue", (d) => d.year)
             .attr("data-yvalue", (d) => d.month)
@@ -109,6 +111,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("width", (d) => w / monthlyVariance.length) //set the width of each cell equal to the overall width dividing by the number of data elements
             .attr("height", (d) => h - yScale(d.month))
             .attr("fill", "darkslateblue") //I will need to figure out how to fill based on a gradient
+ 
 
         /** Data attributes */
             .attr("data-year", (d) => d.year)
