@@ -78,6 +78,21 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         // Debug statement
         //document.getElementById("debug").innerHTML = monthlyData[1].month;
 
+        /** Math and variables to figure out unit lengths and unit ticks */
+        let allTemps = [];
+        for (let i = 0; i < monthlyData.length; i++) {
+            allTemps.push(monthlyData[i].variance + baseTemp);
+        }
+        let minTemp = Math.min(...allTemps);
+        let maxTemp = Math.max(...allTemps);
+        let unitLength = (maxTemp - minTemp) / 8;
+        let unitTicks = [];
+        for (let i = 0; i < 8; i++) {
+            let num = minTemp + i*unitLength;
+            unitTicks.push(Math.round(num * 100) /100);
+        }
+        document.getElementById("debug").innerHTML = unitTicks;
+
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
             .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
@@ -173,6 +188,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [X] The y-axis should have tick labels with the full name of the months of the year
     [X] Figure out the length and width of each cell
     [ ] Determine at least four gradient colors
+        Midnight blue -> medium blue -> royal blue - > light cyan -> light yellow -> peach puff -> 
+        salmon <- crimson <- Dark red
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
 [ ] Create legend
