@@ -130,9 +130,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .domain([12.5, 0.5]) //use 0.5 as min and 12.5 as max to offset the y-Axis
             .range([h - padding, padding]);
 
+        /*
         const legendScale = d3.scaleLinear()
             .domain(minTemp, maxTemp)
             .range([padding, w/4]);
+        */
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
@@ -144,9 +146,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat((d) => month(d)); //run the custom month function to output full month name
 
+        /*
         const legendAxis = d3.axisBottom(legendScale)
             .tickSizeOuter(0) //do not show the outer tick
             .tickFormat(d3.format("d"));
+        */
 
         /** Map dataset to graph */
         svg.selectAll("rect")
@@ -213,10 +217,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         .call(yAxis);
 
         /** Legend axis */
+        /*
         svg.append("g")
         .attr("id","legend")
         .attr("transform", "translate(0," + h + ")")
         .call(legendAxis);
+        */
         
         /** Set up legend rectangles */
         /*
@@ -227,6 +233,18 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         .attr("height", cellHeight)
         .style("fill", "midnightblue")
         */
+
+        /* Legend axis */
+        /*
+       svg.selectAll("rect")
+       .data(unitTicks)
+       .enter()
+       .append("rect")
+       .attr("x", (d) => legendScale(d)) //scale the location of the x value (year) using xScale
+       .attr("y", h - padding) //scale the location y value (month) using yScale
+       .attr("width", cellWidth)
+       .attr("height", cellHeight)
+       /*
         
 
         /** Set up legend text */
