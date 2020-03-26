@@ -13,8 +13,8 @@ const tooltip = d3.select("body")
 
 /** Global heat map variables */ 
 /* Graph dimensions */
-const w = 800;
-const h = 600;
+const w = 2400;
+const h = 700;
 const padding = 60;
 
 /* Time units */
@@ -105,11 +105,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         for (let i = 0; i < monthlyData.length; i++) {
             allTemps.push(monthlyData[i].variance + baseTemp);
         }
-        let minTemp = Math.min(...allTemps);
-        let maxTemp = Math.max(...allTemps);
-        let unitLength = (maxTemp - minTemp) / 8;
-        let unitTicks = [];
-        for (let i = 0; i < 8; i++) {
+        let minTemp = Math.min(...allTemps); //find the minimum temperature within the data range
+        let maxTemp = Math.max(...allTemps); //find the minimum temperature within the data range
+        let unitLength = (maxTemp - minTemp) / 8; //identify the length of each unit tick
+        let unitTicks = []; //this array will be used for the gradient
+        for (let i = 0; i < 8; i++) { //populate the uniTicks array
             let num = minTemp + i*unitLength;
             unitTicks.push(Math.round(num * 100) /100);
         }
@@ -153,7 +153,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Gradient fill */
             //.attr("fill", "darkslateblue")
             .attr("fill", (d) => {
-                let color = "black";
+                let color = "green"; 
                 for (let i = 0; i < unitTicks.length; i++) {
                     let currentTick = unitTicks[i];
                     let thisTemp = baseTemp + d.variance;
@@ -227,9 +227,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [X] The x-axis should have tick labels with the years between 1754 and 2015
     [X] The y-axis should have tick labels with the full name of the months of the year
     [X] Figure out the length and width of each cell
-    [ ] Determine at least four gradient colors
+    [X] Determine at least four gradient colors
         Midnight blue -> medium blue -> royal blue - > light cyan -> light yellow -> peach puff -> 
         salmon <- crimson <- Dark red
+    [ ] Debug: the height for December cells isn't quite right
+    [ ] Debug: there is white space between each cell width
+    [ ] A few of the colors are not on the color scale (i.e. it is defaulting to green)
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
 [ ] Create legend
