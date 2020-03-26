@@ -153,7 +153,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Gradient fill */
             //.attr("fill", "darkslateblue")
             .attr("fill", (d) => {
-                let color = "white";
+                let color = "black";
                 for (let i = 0; i < unitTicks.length; i++) {
                     let currentTick = unitTicks[i];
                     let thisTemp = baseTemp + d.variance;
