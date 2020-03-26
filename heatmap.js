@@ -99,6 +99,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Map dataset to graph */
 
+
+        /** Tool tip */
         /* Mouseover */
 
         /* Mouse out */
