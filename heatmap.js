@@ -78,7 +78,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         const cellWidth = (w - padding*2) / (maxYear - minYear);
         const legendCellWidth = (w/3) / (maxTemp - minTemp);
 
-        const legendTickArray = [1.68, 3.21, 4.74, 6.26, 7.79, 9.31, 10.84, 12.36];
+        const legendTickArray = [0.15, 1.68, 3.21, 4.74, 6.26, 7.79, 9.31, 10.84, 12.36, 13.88];
 
         const xScale = d3.scaleLinear()
             .domain([minYear, maxYear])
@@ -90,7 +90,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         const legendScale = d3.scaleLinear()
             .domain(legendTickArray)
-            .range([legendCellWidth,0]);
+            .range([0,legendCellWidth]);
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
@@ -171,13 +171,13 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .call(yAxis);
 
         /** Set up legend axis */
-        /*
+        
         svg.append("g")
             //.attr("id","legend-axis")
             //.attr("transform", "translate(" + padding + "," + w - padding + ")")
-            .attr("transform", "translate(" + (w - padding - legendScale(12)) + "," + (padding/12 + cellHeight) + ")")
+            .attr("transform", "translate(" + (w-padding-legendCellWidth*colorArray.length) + "," + (padding/12 + cellHeight) + ")")
             .call(legendAxis);
-        */
+        
 
         /** Legend */
         const legend = svg.append("g")
