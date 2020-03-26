@@ -13,8 +13,8 @@ const tooltip = d3.select("body")
 
 /** Global heat map variables */ 
 /* Graph dimensions */
-const w = 2400;
-const h = 700;
+const w = 800;
+const h = 600;
 const padding = 60;
 
 /* Time units */
@@ -75,7 +75,7 @@ const colorScale = (num) => { //given a number, return a color based on the grad
         case 8:
             return "darkred";
         default:
-            return "black";
+            return "darkred";
     }
 }
 
@@ -155,7 +155,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Gradient fill */
             //.attr("fill", "darkslateblue")
             .attr("fill", (d) => {
-                let color = "green"; 
+                let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
                     let currentTick = unitTicks[i];
                     let thisTemp = baseTemp + d.variance;
@@ -235,7 +235,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [ ] Debug: the height for December cells isn't quite right
     [ ] Debug: the cells are shooting past the x-axis
     [X] Debug: there is white space between each cell width
-    [ ] A few of the colors are not on the color scale (i.e. it is defaulting to green)
+    [X] A few of the colors are not on the color scale; decided to set default color to crimsonred
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
 [ ] Create legend
