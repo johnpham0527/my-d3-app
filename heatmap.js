@@ -211,14 +211,22 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         .attr("id","y-axis")
         .attr("transform", "translate(" + padding + ",0)")
         .call(yAxis);
+
+        /** Legend axis */
+        svg.append("g")
+        .attr("id","legend")
+        .attr("transform", "translate(" + padding + "," + (h-padding) + ")")
+        .call(legendAxis);
         
         /** Set up legend rectangles */
+        /*
         svg.append("rect")
         .attr("x", padding)
         .attr("y", h - padding/2)
         .attr("width", cellWidth*10)
         .attr("height", cellHeight)
         .style("fill", "midnightblue")
+        */
         
 
         /** Set up legend text */
