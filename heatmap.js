@@ -225,14 +225,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         */
         
         /** Set up legend rectangles */
-        /*
         svg.append("rect")
         .attr("x", padding)
         .attr("y", h - padding/2)
         .attr("width", cellWidth*10)
         .attr("height", cellHeight)
         .style("fill", "midnightblue")
-        */
 
         /* Legend axis */
         /*
