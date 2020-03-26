@@ -116,8 +116,14 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         }
 
         /** Local heat map variables */
+        const minYear = d3.min(monthlyData, (d) => d.year-1);
+        const maxYear = d3.max(monthlyData, (d) => d.year+1);
+        
+        const cellHeight = (h-padding*2)/12;
+        const cellWidth = (d) => (xScale(d.year));
+
         const xScale = d3.scaleLinear()
-            .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
+            .domain([minYear, maxYear])
             .range([padding, w - padding]);
 
         const yScale = d3.scaleLinear()
@@ -145,9 +151,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("data-yvalue", (d) => d.month)
             .attr("x", (d) => xScale(d.year)) //scale the location of the x value (year) using xScale
             .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
-            .attr("width", (d) => (xScale(d.year)))
-            //attr("height", (d) => (h - padding)/14)
-            .attr("height", (h-padding*2)/12)
+            .attr("width", cellWidth)
+            .attr("height", cellHeight)
 
         /** Gradient fill */
             //.attr("fill", "darkslateblue")
