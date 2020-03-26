@@ -78,6 +78,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         const cellWidth = (w - padding*2) / (maxYear - minYear);
         const legendCellWidth = (w/3) / (maxTemp - minTemp);
 
+        const legendTickArray = [1.68, 3.21, 4.74, 6.26, 7.79, 9.31, 10.84, 12.36];
+
         const xScale = d3.scaleLinear()
             .domain([minYear, maxYear])
             .range([padding, w - padding]);
@@ -102,7 +104,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         const legendAxis = d3.axisBottom(legendScale)
             //.ticks(8, ",f")
             .tickSizeOuter(0) //do not show the outer tick
-            .tickValues([1.68, 3.21, 4.74, 6.26, 7.79, 9.31, 10.84, 12.36])
+            .tickValues(legendTickArray)
             .tickFormat(d3.format(".2f"));
         
 
@@ -170,8 +172,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Set up legend axis */
         svg.append("g")
-            .attr("id","legend-axis")
-            .attr("transform", "translate(" + padding + "," + w - padding + ")")
+            //.attr("id","legend-axis")
+            //.attr("transform", "translate(" + padding + "," + w - padding + ")")
+            .attr("transform", "translate(" + (w - padding - legendScale(12)) + "," + (padding/12 + cellHeight) + ")")
             .call(legendAxis);
 
         /** Legend */
