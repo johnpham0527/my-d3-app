@@ -83,7 +83,8 @@ const colorScale = (num) => { //given a number, return a color based on the grad
 const svg = d3.select("#heatmap")
     .append("svg")
     .attr("width",w)
-    .attr("height",h);
+    .attr("height",h)
+
 
 /*** Heatmap code */
 
@@ -117,13 +118,11 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Local heat map variables */
         const xScale = d3.scaleLinear()
             .domain([d3.min(monthlyData, (d) => d.year-1), d3.max(monthlyData, (d) => d.year+1)])
-            //.range([padding, w - padding]);
-            .range([padding, w]);
+            .range([padding, w - padding]);
 
         const yScale = d3.scaleLinear()
             .domain([12.5, 0.5]) //use 0.5 as min and 12.5 as max to offset the y-Axis
-            //.range([h - padding, padding]);
-            .range([h, padding]);
+            .range([h - padding, padding]);
 
         const xAxis = d3.axisBottom(xScale)
             .ticks(20)
@@ -146,7 +145,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("data-yvalue", (d) => d.month)
             .attr("x", (d) => xScale(d.year)) //scale the location of the x value (year) using xScale
             .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
-            //.attr("width", (d) => w / monthlyData.length) //set the width of each cell equal to the overall width dividing by the number of data elements
             .attr("width", (d) => xScale(d.year))
             .attr("height", (d) => yScale(d.month))
 
