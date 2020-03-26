@@ -23,41 +23,16 @@ let formatYear = d3.timeFormat('%Y');
 let parseMonth = d3.timeParse('%B');
 let formatMonth = d3.timeFormat('%B');
 
+/* Get Functions */
 const month = (m) => { //this custom month function returns the full month name
-    switch (m) {
-        case 1:
-            return "January";
-        case 2:
-            return "February";
-        case 3:
-            return "March";
-        case 4:
-            return "April";
-        case 5:
-            return "May";
-        case 6:
-            return "June";
-        case 7:
-            return "July";
-        case 8:
-            return "August";
-        case 9:
-            return "September";
-        case 10:
-            return "October";
-        case 11:
-            return "November";
-        case 12:
-            return "December";
-        default:
-            break;
-    }
+    return monthArray[m-1]
 }
 
 const colorScale = (num) => { //given a number, return a color based on the gradient scale
    return colorArray[num];
 }
 
+const monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
 const colorArray = ["midnightblue", "mediumblue", "royalblue", "lightcyan", "lightyellow", "peachpuff", "salmon", "crimson", "darkred"];
 
 /* SVG const */
