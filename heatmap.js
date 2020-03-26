@@ -169,9 +169,9 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 [ ] Create heat map separately from legend
     [X] Create separate sections for legend and heatmap
 [ ] Create heat map
-    [ ] The x-axis should have tick labels with the years between 1754 and 2015
-    [ ] The y-axis should have tick labels with the full name of the months of the year
-    [ ] Figure out the length and width of each cell
+    [X] The x-axis should have tick labels with the years between 1754 and 2015
+    [X] The y-axis should have tick labels with the full name of the months of the year
+    [X] Figure out the length and width of each cell
     [ ] Determine at least four gradient colors
 [ ] Create the tool tips
     [ ] Debug why tooltip doesn't appear
