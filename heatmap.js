@@ -140,6 +140,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
     [ ] The x-axis should have tick labels with the years between 1754 and 2015
     [ ] The y-axis should have tick labels with the full name of the months of the year
     [ ] Figure out the length and width of each cell
+[ ] Create the tool tips
 [ ] Create legend
     [ ] The legend should have at least 4 different fill colors
 */
