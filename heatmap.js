@@ -13,8 +13,8 @@ const tooltip = d3.select("body")
 
 /** Global heat map variables */ 
 /* Graph dimensions */
-const w = 1600;
-const h = 800;
+const w = 1000;
+const h = 500;
 const padding = 60;
 
 /* Time units */
@@ -147,15 +147,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .enter() 
             .append("rect")
             .attr("class", "cell")
-            .attr("data-xvalue", (d) => d.year)
-            .attr("data-yvalue", (d) => d.month)
             .attr("x", (d) => xScale(d.year)) //scale the location of the x value (year) using xScale
             .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
             .attr("width", cellWidth)
             .attr("height", cellHeight)
 
         /** Gradient fill */
-            //.attr("fill", "darkslateblue")
             .attr("fill", (d) => {
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
@@ -175,7 +172,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
 
         /** Data attributes */
             .attr("data-year", (d) => d.year)
-            .attr("data-month", (d) => month(d.month))
+            .attr("data-month", (d) => d.month-1)
             .attr("data-variance", (d) => d.variance)
             .attr("data-temp", (d) => baseTemp + d.variance)
 
