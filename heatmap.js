@@ -7,9 +7,9 @@ let dataset = {};
 /** Tooltip */
 const tooltip = d3.select("body")
                    .append("div")
-                   .attr("class","tooltip")
-                   .attr("id","tooltip")
-                   .style("opacity",0);
+                   .attr("class", "tooltip")
+                   .attr("id", "tooltip")
+                   .style("opacity", 0);
 
 /** Global heat map variables */ 
 /* Graph dimensions */
@@ -153,7 +153,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("height", cellHeight)
 
         /** Gradient fill */
-            .attr("fill", (d) => {
+            .style("fill", (d) => {
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
                     let currentTick = unitTicks[i];
@@ -179,17 +179,22 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Tool tip */
         /* Mouseover */
             .on("mouseover", (d) => {
-                tooltip.style("opacity, 0.8")
-                    .attr("id", "tooltip")
-                    .attr("data-year", d.year)
-                    .html(d.year + " - " + month(d.month))
-                    .style("left", d3.event.pageX + 5 + "px") //x-axis offset
-                    .style("top", d3.event.pageY - 5 + "px") //y-axis offset
+                tooltip.transition().duration(200)
+                    .style("opacity, 0.8")
+                    .style('left', (d3.event.pageX ) + 'px')
+                    .style('top', (d3.event.pageY / 1.5) + 'px')
+                    //.attr("id", "tooltip")
+                    //.attr("data-year", d.year)
+                    //.html(d.year + " - " + d.month)
+                    //.style("left", d3.event.pageX + 5 + "px") //x-axis offset
+                    //.style("top", d3.event.pageY - 5 + "px") //y-axis offset
+                tooltip.html("Please show up")
             })
 
         /* Mouse out */
             .on("mouseout", (d) => {
-                tooltip.style("opacity", 0)
+                tooltip.transition().duration(200)
+                .style("opacity", 0)
             });
 
         /** Set up x-axis*/
