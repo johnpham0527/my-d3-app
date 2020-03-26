@@ -100,7 +100,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Map dataset to graph */
         svg.selectAll("rect")
             .data(monthlyData)
-            
+            .enter()
             .append("rect")
 
             .attr("class", "cell")
