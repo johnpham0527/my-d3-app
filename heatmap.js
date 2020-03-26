@@ -151,7 +151,22 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("height", (d) => h - yScale(d.month + 1))
 
         /** Gradient fill */
-            .attr("fill", "darkslateblue")
+            //.attr("fill", "darkslateblue")
+            .attr("fill", (d) => {
+                let color = "white";
+                for (let i = 0; i < unitTicks.length; i++) {
+                    let currentTick = unitTicks[i];
+                    let thisTemp = baseTemp + d.variance;
+                    if (currentTick < thisTemp) {
+                        continue;
+                    }
+                    else {
+                        color = colorScale(i);
+                        break;
+                    }
+                }
+                return color;
+            })
 
 
         /** Data attributes */
