@@ -100,18 +100,19 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         /** Map dataset to graph */
         svg.selectAll("rect")
             .data(monthlyData)
-            .enter()
+            .enter() 
             .append("rect")
-
             .attr("class", "cell")
             .attr("data-xvalue", (d) => d.year)
             .attr("data-yvalue", (d) => d.month)
             .attr("x", (d) => xScale(d.year)) //scale the location of the x value (year) using xScale
-            .attr("y", (d) => yScale(d.month)) //scale the location y value (month) using yScale
-            .attr("width", (d) => w / monthlyVariance.length) //set the width of each cell equal to the overall width dividing by the number of data elements
-            .attr("height", (d) => h - yScale(d.month))
-            .attr("fill", "darkslateblue") //I will need to figure out how to fill based on a gradient
- 
+        
+            .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
+            
+            .attr("width", (d) => w / monthlyData.length) //set the width of each cell equal to the overall width dividing by the number of data elements
+            .attr("height", (d) => h - yScale(d.month + 1))
+            .attr("fill", "darkslateblue") //I will need to figure out how to fill based on a gradient of at least four different colors
+
 
         /** Data attributes */
             .attr("data-year", (d) => d.year)
