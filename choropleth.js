@@ -2,6 +2,8 @@
 
 /*** Initialize global variables */
 /** Dataset */
+let dataset = [];
+let topology = [];
 
 /** Tooltip */
 
