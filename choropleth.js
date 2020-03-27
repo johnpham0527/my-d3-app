@@ -25,6 +25,8 @@ const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen",
 
     /** Local choropleth map variables */
 
+    const legendTickArray = ["3%", "12%", "21%", "30%", "39%", "48%", "57%", "66%"];
+
     /** Map topology */
 
     /** Map dataset to graph */
