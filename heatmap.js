@@ -65,7 +65,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
         let maxTemp = Math.max(...allTemps); //find the minimum temperature within the data range
         let unitLength = (maxTemp - minTemp) / 8; //identify the length of each unit tick
         let unitTicks = []; //this array will be used for the gradient
-        for (let i = 0; i < 8; i++) { //populate the uniTicks array
+        for (let i = 0; i < 8; i++) { //populate the unitTicks array
             let num = minTemp + i*unitLength;
             unitTicks.push(Math.round(num * 100) /100);
         }
@@ -115,7 +115,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("y", (d) => yScale(d.month - 0.5)) //scale the location y value (month) using yScale
             .attr("width", cellWidth)
             .attr("height", cellHeight)
-            /* Gradient fill */
             .style("fill", (d) => { //This algorithm matches the temp value to the current gradient value based on the unit tick intervals
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
