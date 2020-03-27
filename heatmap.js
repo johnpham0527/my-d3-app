@@ -13,8 +13,8 @@ const tooltip = d3.select("body")
 
 /** Global heat map variables */ 
 /* Graph dimensions */
-const w = 1965;
-const h = 610;
+const w = 1310;
+const h = 420;
 const padding = 80;
 
 /* Time units */
