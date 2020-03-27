@@ -28,6 +28,10 @@ const getColor = (num) => { //given a number, return a color based on the gradie
 const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
 
 /* SVG const */
+const svg = d3.select("#choropleth")
+    .append("svg")
+    .attr("width",w)
+    .attr("height",h)
 
 /*** Choropleth code */
 
