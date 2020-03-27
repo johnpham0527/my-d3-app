@@ -6,6 +6,11 @@ let dataset = [];
 let topology = [];
 
 /** Tooltip */
+const tooltip = d3.select("body")
+                   .append("div")
+                   .attr("class", "tooltip")
+                   .attr("id", "tooltip")
+                   .style("opacity", 0);
 
 /** Global choropleth map variables */
 /* Graph dimensions */
