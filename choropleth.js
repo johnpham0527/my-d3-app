@@ -11,6 +11,11 @@
 /* Topology units */
 
 /* Get Functions */
+const getColor = (num) => { //given a number, return a color based on the gradient scale
+    return colorArray[num];
+ }
+
+const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
 
 /* SVG const */
 
@@ -36,3 +41,9 @@
     //Closing brace
 
 /*** To-do's */
+/*
+[ ] Study data
+    [ ] Education data uses fips, which matches the id used in topology data
+
+
+*/
