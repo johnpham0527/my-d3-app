@@ -34,6 +34,7 @@ figcaption {
     pointer-events: none;
     border: 2px solid slategray;
     border-radius: 3px;
+    text-align: center;
   }
   
   .legend rect {
