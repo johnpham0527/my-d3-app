@@ -170,12 +170,12 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("transform", "translate(" + padding + ",0)")
             .call(yAxis);
 
-        /** Legend Axis */
+        /** Legend axis */
         svg.append("g")
-            .attr("transform", "translate(" + (w-padding-legendCellWidth*colorArray.length) + "," + (padding/12 + cellHeight) + ")")
+            .attr("transform", "translate(" + (w-padding-legendCellWidth*colorArray.length) + "," + (padding/12 + cellHeight - 1) + ")")
             .call(legendAxis);
 
-        /** Legend Cells */
+        /** Legend cells */
         svg.append("g")
             .attr("id","legend")
             .selectAll("rect")
