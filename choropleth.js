@@ -7,6 +7,9 @@
 
 /** Global choropleth map variables */
 /* Graph dimensions */
+const w = 1310;
+const h = 420;
+const padding = 80;
 
 /* Topology units */
 
@@ -43,6 +46,7 @@ const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen",
     /** Tooltip */
 
     /** Legend axis*/
+    
 
     /** Legend cells */
 
