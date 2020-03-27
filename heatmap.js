@@ -105,7 +105,6 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .tickValues(legendTickArray)
             .tickFormat(d3.format(".2f"));
         
-
         /** Map dataset to graph */
         svg.selectAll("rect")
             .data(monthlyData)
@@ -117,7 +116,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("width", cellWidth)
             .attr("height", cellHeight)
             /* Gradient fill */
-            .style("fill", (d) => {
+            .style("fill", (d) => { //This algorithm matches the temp value to the current gradient value based on the unit tick intervals
                 let color = "darkred"; 
                 for (let i = 0; i < unitTicks.length; i++) {
                     let currentTick = unitTicks[i];
@@ -139,7 +138,7 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("data-variance", (d) => d.variance)
             .attr("data-temp", (d) => baseTemp + d.variance)
 
-        /** Tool tip */
+        /** Tooltip */
             .on("mouseover", (d) => {
                 tooltip.style("opacity", 0.8)
                 .attr("id", "tooltip")
