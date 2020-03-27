@@ -38,7 +38,10 @@ const svg = d3.select("#choropleth")
 /*** Choropleth code */
 
 /** Fetch data */
-
+fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json')
+    .then(response => response.json())
+    .then(data => dataset = data)
+    .then(() => {
 
     /** Set up local choropleth map variables */
 
@@ -77,7 +80,7 @@ const svg = d3.select("#choropleth")
         .attr("height", cellHeight)
         .style("fill", (d) => d)
 
-    //Closing brace
+    }); //Closing brace for last 'then' statement and closing parenthesis for fetch statement
 
 /*** To-do's */
 /*
