@@ -26,6 +26,10 @@ const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen",
     /** Local choropleth map variables */
 
     const legendTickArray = ["3%", "12%", "21%", "30%", "39%", "48%", "57%", "66%"];
+    
+    const legendAxis = d3.axisBottom(legendScale)
+            .tickValues(legendTickArray)
+            .tickFormat(d3.format(".2f"));
 
     /** Map topology */
 
