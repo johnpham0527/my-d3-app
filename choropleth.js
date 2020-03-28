@@ -37,7 +37,10 @@ const svg = d3.select("#choropleth")
 
 /*** Choropleth code */
 
-/** Fetch data */
+/** Fetch topology data */
+
+
+/** Fetch user education data */
 fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json')
     .then(response => response.json())
     .then(data => dataset = data)
