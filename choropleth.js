@@ -18,8 +18,8 @@ const w = 1280;
 const h = 420;
 const padding = 80;
 
-/* Topology units */
-
+/* Topojson */
+//const topology = topojson.topology({foo: geojson});
 
 
 /* Get Functions */
