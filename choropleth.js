@@ -41,13 +41,15 @@ const svg = d3.select("#choropleth")
 
 
 /** Fetch user education data */
+/*
 fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json')
     .then(response => response.json())
     .then(data => dataset = data)
     .then(() => {
+*/
 
         /** Set up local choropleth map variables */
-
+        /*
         const legendCellHeight = 4;
         const legendCellWidth = 12;
 
@@ -56,6 +58,7 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
         const legendAxis = d3.axisBottom(legendScale)
                 .tickValues(legendTickArray)
                 .tickFormat(d3.format(".2f"));
+        */
 
         /** Map topology */
 
@@ -66,11 +69,14 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
         /** Display tooltip */
 
         /** Display legend axis*/
+        /*
         svg.append("g")
             .attr("transform", "translate(" + (w-padding-legendCellWidth*colorArray.length) + "," + (padding/12 + cellHeight - 1) + ")")
             .call(legendAxis);
+        */
 
         /** Display legend cells */
+        /*
         svg.append("g")
             .attr("id","legend")
             .selectAll("rect")
@@ -82,8 +88,11 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
             .attr("width", legendCellWidth)
             .attr("height", legendCellHeight)
             .style("fill", (d) => d);
+            */
 
+            /*
 }); //Closing brace for last 'then' statement and closing parenthesis for fetch statement
+            */
 
 /*** To-do's */
 /*
