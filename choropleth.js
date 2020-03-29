@@ -47,7 +47,7 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
     .then(data => dataset = data) //store education data into dataset
     .then(fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json'))
     .then(response => response.json())
-    .then(data => topology = data)
+    .then(data => topology = data) // store topology data into dataset
     .then(() => {
 
         document.getElementById('debug1').innerHTML = dataset;
@@ -103,6 +103,8 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
 /*
 [ ] Study data
     [ ] Education data uses fips, which matches the id used in topology data
-
+[ ] Fetch data
+    [ ] Instead of using nested fetch statements, learn how to use d3.queue, defer, and await
+[ ] Link to example assignment: https://codepen.io/freeCodeCamp/full/EZKqza
 
 */
