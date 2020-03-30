@@ -35,6 +35,8 @@ const getColor = (num) => { //given a number, return a color based on the gradie
 
 const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
 
+const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
+
 /* SVG const */
 const svg = d3.select("#choropleth")
     .append("svg")
