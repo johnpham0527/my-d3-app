@@ -20,8 +20,8 @@ const tooltip = d3.select("body")
 
 /** Global choropleth map variables */
 /* Graph dimensions */
-const w = 1280;
-const h = 420;
+const w = 1100;
+const h = 650;
 const padding = 80;
 
 /* Topojson */
@@ -43,48 +43,43 @@ const svg = d3.select("#choropleth")
 
 /*** Choropleth code */
 
-/** Fetch data */
+Promise.all([ //use Promise to fetch both education and topological data sets"
 
-/*
-fetch(EDUCATION_URL)
-    .then(response => response.json())
-    .then(data => dataset = data)
-    .then(() => {
-        document.getElementById('debug1').innerHTML = dataset;
-    })
-    .catch((error) => {
-        document.getElementById("debug3").innerHTML = "Error: " + error;
-    });
-
-
-fetch(COUNTIES_URL)
-    .then(response => response.json())
-    .then(data =>topology = data)
-    .then(() => {
-        document.getElementById('debug2').innerHTML = topology;
-    })
-    .catch((error) => {
-        document.getElementById("debug3").innerHTML = "Error: " + error;
-    });
-*/
-
-Promise.all([
+    /** Fetch data */
         fetch(EDUCATION_URL).then( response => response.json()),
         fetch(COUNTIES_URL).then( response => response.json())
         ])
+
+    /** Process data */
     .then(([educationData, topologyData]) => {
+        
+        /* Debug Output */
+        /*
         document.getElementById('debug1').innerHTML = educationData;
         document.getElementById('debug2').innerHTML = topologyData;
+        */
+
+        /* Output counties */
+        svg.selectAll("path")
+            .data( topojson.feature(topologyData, topologyData.objects.counties).features )
+            .enter()
+            .append("path")
+            .attr("d", d3.geoPath());
+
+
+
     })
+
+    /** Log errors */
     .catch((error) => {
         console.log(error);
     })
 
-    
 
 
 
-/** Process data */
+
+
 
 
 
