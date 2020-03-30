@@ -68,9 +68,29 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .data(counties)
             .enter()
             .append("path")
-            .attr("d", d3.geoPath());
+            .attr("d", d3.geoPath())
+            .style("fill", (d) => {
+                let color = "darkgreen";
+                return color;
+            })
 
-
+/*
+            .style("fill", (d) => { //This algorithm matches the temp value to the current gradient value based on the unit tick intervals
+                let color = "darkred"; 
+                for (let i = 0; i < unitTicks.length; i++) {
+                    let currentTick = unitTicks[i];
+                    let thisTemp = baseTemp + d.variance;
+                    if (currentTick < thisTemp) {
+                        continue;
+                    }
+                    else {
+                        color = colorScale(i);
+                        break;
+                    }
+                }
+                return color;
+            })
+*/
 
     })
 
