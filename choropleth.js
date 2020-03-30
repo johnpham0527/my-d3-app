@@ -69,9 +69,9 @@ fetch(COUNTIES_URL)
 */
 
 Promise.all([
-    fetch(EDUCATION_URL).then( response => response.json()),
-    fetch(COUNTIES_URL).then( response => response.json())
-    ])
+        fetch(EDUCATION_URL).then( response => response.json()),
+        fetch(COUNTIES_URL).then( response => response.json())
+        ])
     .then(([educationData, topologyData]) => {
         document.getElementById('debug1').innerHTML = educationData;
         document.getElementById('debug2').innerHTML = topologyData;
@@ -80,22 +80,9 @@ Promise.all([
         console.log(error);
     })
 
+    
 
-/*
-try {
-    let [educationData, topologyData] = await Promise.all([
-        fetch(EDUCATION_URL),
-        fetch(COUNTIES_URL)
-    ]);
 
-    document.getElementById('debug1').innerHTML = educationData;
-    document.getElementById('debug1').innerHTML = topologyData;
-
-}
-catch (error) {
-    console.log(error);
-}
-*/
 
 /** Process data */
 
