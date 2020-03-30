@@ -43,10 +43,14 @@ const svg = d3.select("#choropleth")
 
 /*** Choropleth code */
 
-/** Fetch topology data */
+/** Fetch data */
 
+queue.defer(request, EDUCATION_URL)
+    .defer(request, COUNTIES_URL)
+    .awaitAll(processData);
 
-/** Fetch user education data */
+/** Process data */
+
 
 
 
