@@ -59,9 +59,13 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         document.getElementById('debug2').innerHTML = topologyData;
         */
 
+        /* Data manipulation variables */
+        const topojsonObject = topojson.feature(topologyData, topologyData.objects.counties);
+        const counties = topojsonObject.features;
+
         /* Output counties */
         svg.selectAll("path")
-            .data( topojson.feature(topologyData, topologyData.objects.counties).features )
+            .data(counties)
             .enter()
             .append("path")
             .attr("d", d3.geoPath());
