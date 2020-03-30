@@ -24,17 +24,12 @@ const w = 1100;
 const h = 650;
 const padding = 80;
 
-/* Topojson */
-//const topology = topojson.topology({foo: geojson});
-
-
 /* Get Functions */
 const getColor = (num) => { //given a number, return a color based on the gradient scale
     return colorArray[num];
  }
 
 const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
-
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
 
 /* SVG const */
@@ -56,10 +51,9 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
     .then(([educationData, topologyData]) => {
         
         /* Debug Output */
-        /*
-        document.getElementById('debug1').innerHTML = educationData;
-        document.getElementById('debug2').innerHTML = topologyData;
-        */
+        document.getElementById('debug1').innerHTML = educationData[0].bachelorsOrHigher;
+        //document.getElementById('debug2').innerHTML = topologyData;
+        
 
         /* Data manipulation variables */
         const topojsonObject = topojson.feature(topologyData, topologyData.objects.counties);
@@ -71,8 +65,21 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .enter()
             .append("path")
             .attr("d", d3.geoPath())
+            .data(educationData)
+            .enter()
             .style("fill", (d) => {
                 let color = "darkgreen";
+                for (let i = 0; i < degreeUnitTicks.length; i++) {
+                    let currentTickValue = degreeUnitTicks[i];
+                    let thisValue = d.bachelorsOrHigher;
+                    if (currentTickValue < thisValue) {
+                        continue; //skip and keep search for the right tick
+                    }
+                    else {
+                        color = colorScale(i);
+                        break;
+                    }
+                }
                 return color;
             })
 
