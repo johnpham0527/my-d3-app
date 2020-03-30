@@ -65,8 +65,11 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .enter()
             .append("path")
             .attr("d", d3.geoPath())
+
+            //debug this
             .data(educationData)
             .enter()
+
             .style("fill", (d) => {
                 let color = "darkgreen";
                 for (let i = 0; i < degreeUnitTicks.length; i++) {
