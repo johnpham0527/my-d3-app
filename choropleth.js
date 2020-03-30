@@ -3,7 +3,7 @@
 /*** Initialize global variables */
 /** Dataset */
 let dataset = [];
-let topology = [];
+let topology = {};
 
 /** Data Request */
 let queue = d3.queue();
@@ -45,9 +45,57 @@ const svg = d3.select("#choropleth")
 
 /** Fetch data */
 
-queue.defer(request, EDUCATION_URL)
-    .defer(request, COUNTIES_URL)
-    .awaitAll(processData);
+/*
+fetch(EDUCATION_URL)
+    .then(response => response.json())
+    .then(data => dataset = data)
+    .then(() => {
+        document.getElementById('debug1').innerHTML = dataset;
+    })
+    .catch((error) => {
+        document.getElementById("debug3").innerHTML = "Error: " + error;
+    });
+
+
+fetch(COUNTIES_URL)
+    .then(response => response.json())
+    .then(data =>topology = data)
+    .then(() => {
+        document.getElementById('debug2').innerHTML = topology;
+    })
+    .catch((error) => {
+        document.getElementById("debug3").innerHTML = "Error: " + error;
+    });
+*/
+
+Promise.all([
+    fetch(EDUCATION_URL).then( response => response.json()),
+    fetch(COUNTIES_URL).then( response => response.json())
+    ])
+    .then(([educationData, topologyData]) => {
+        document.getElementById('debug1').innerHTML = educationData;
+        document.getElementById('debug2').innerHTML = topologyData;
+    })
+    .catch((error) => {
+        console.log(error);
+    })
+
+
+/*
+try {
+    let [educationData, topologyData] = await Promise.all([
+        fetch(EDUCATION_URL),
+        fetch(COUNTIES_URL)
+    ]);
+
+    document.getElementById('debug1').innerHTML = educationData;
+    document.getElementById('debug1').innerHTML = topologyData;
+
+}
+catch (error) {
+    console.log(error);
+}
+*/
 
 /** Process data */
 
