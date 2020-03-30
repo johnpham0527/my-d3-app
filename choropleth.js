@@ -5,8 +5,11 @@
 let dataset = [];
 let topology = [];
 
-/* Queue */
+/** Data Request */
 let queue = d3.queue();
+const EDUCATION_URL = "https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json";
+const COUNTIES_URL = "https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/counties.json";
+
 
 /** Tooltip */
 const tooltip = d3.select("body")
