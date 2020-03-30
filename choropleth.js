@@ -5,6 +5,9 @@
 let dataset = [];
 let topology = [];
 
+/* Queue */
+let queue = d3.queue();
+
 /** Tooltip */
 const tooltip = d3.select("body")
                    .append("div")
@@ -42,6 +45,9 @@ const svg = d3.select("#choropleth")
 
 /** Fetch user education data */
 
+
+
+/*
 fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/for_user_education.json') //fetch education data
     .then(response => response.json())
     .then(data => dataset = data) //store education data into dataset
@@ -53,6 +59,7 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
         document.getElementById('debug1').innerHTML = dataset;
         document.getElementById('debug2').innerHTML = topology;
 
+*/
         /** Set up local choropleth map variables */
         /*
         const legendCellHeight = 4;
@@ -96,7 +103,7 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
             */
 
             
-}); //Closing brace for last 'then' statement and closing parenthesis for fetch statement
+//}); //Closing brace for last 'then' statement and closing parenthesis for fetch statement
             
 
 /*** To-do's */
