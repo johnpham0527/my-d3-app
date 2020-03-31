@@ -29,22 +29,18 @@ const getColor = (num) => { //given a number, return a color based on the gradie
     return colorArray[num];
  }
 
+ const getProperty = (arrayToSearch, fipsToFind, propertyName) => {
+    for (let i = 0; i < arrayToSearch.length; i++) { //iterate through array
+       if (arrayToSearch[i].fips == fipsToFind) { //compare each item's fip to fipToFind
+           return arrayToSearch[i][propertyName]; //if it's a match, return the value associated with item[propertyName]
+       }
+    } 
+   };
+
 const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
 
 
-//Given an array of objects, a fips value, and an object property, iterate through array and return the corresponding property value
-const getProperty = (objectArray, fipsToFind, propertyName) => {
-
- for (let i = 0; i < objectArray.length; i++) {
-  //iterate through object
-  //compare each item's fip to fipToFind
-  //if it's a match, return the value associated with item[propertyName]
-  
-
- } 
-
-}; 
 
 
 /* SVG const */
@@ -67,7 +63,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         
         /* Debug Output */
         document.getElementById('debug1').innerHTML = educationData[0].bachelorsOrHigher;
-        //document.getElementById('debug2').innerHTML = topologyData;
+        document.getElementById('debug2').innerHTML = topologyData.objects.counties.geometries[0].id;
         
 
         /* Data manipulation variables */
