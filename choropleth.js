@@ -21,7 +21,7 @@ const tooltip = d3.select("body")
 /** Global choropleth map variables */
 /* Graph dimensions */
 const w = 1100;
-const h = 650;
+const h = 700;
 const padding = 80;
 
 /* Get Functions */
@@ -61,7 +61,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         
         /* Debug Output */
         //document.getElementById('debug1').innerHTML = educationData[0].bachelorsOrHigher;
-        document.getElementById('debug1').innerHTML = getProperty(educationData, 56045, "bachelorsOrHigher");
+        //document.getElementById('debug1').innerHTML = getProperty(educationData, 56045, "bachelorsOrHigher");
         //document.getElementById('debug2').innerHTML = topologyData.objects.counties.geometries[0].id;
         
 
@@ -69,14 +69,20 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         const topojsonObject = topojson.feature(topologyData, topologyData.objects.counties);
         const counties = topojsonObject.features;
 
+        /* Legend variables */
+        const legendCellHeight = 4;
+        const legendCellWidth = 12;
+
+        const legendAxis = d3.axisBottom(legendScale)
+        .tickValues(degreeUnitTicks)
+        .tickFormat(d3.format(".0%")); //no decimal places, add percent sign
+
         /* Output counties */
         svg.selectAll("path")
             .data(counties)
             .enter()
             .append("path")
-            .attr("d", d3.geoPath())
-
-            //.attr("bachelorsOrHigher", (d) => getProperty(educationData, d.id, "bachelorsOrHigher"))    
+            .attr("d", d3.geoPath()) 
 
             .style("fill", (d) => {
                 let color = "darkgreen";
@@ -93,24 +99,8 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
                 }
                 return color;
             })
+            .attr("transform", "translate(" + padding + "," + padding + ")")
 
-/*
-            .style("fill", (d) => { //This algorithm matches the temp value to the current gradient value based on the unit tick intervals
-                let color = "darkred"; 
-                for (let i = 0; i < unitTicks.length; i++) {
-                    let currentTick = unitTicks[i];
-                    let thisTemp = baseTemp + d.variance;
-                    if (currentTick < thisTemp) {
-                        continue;
-                    }
-                    else {
-                        color = colorScale(i);
-                        break;
-                    }
-                }
-                return color;
-            })
-*/
 
     })
 
