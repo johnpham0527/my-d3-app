@@ -79,10 +79,11 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         const topojsonObject = topojson.feature(topologyData, topologyData.objects.counties);
         const counties = topojsonObject.features;
 
-        const fipsHash = educationData.reduce( (fipsMap, county) => {
-            fipsMap[county.id] = [county.area_name, county.state, county.bachelorsOrHigher];
-            return fipsMap;
-        })
+        let fipsHash = {}; //this is the hash of all counties
+        educationData.forEach( (county) => { //map education data into fipsHash
+            fipsHash[county.fips] = [county.area_name, county.state, county.bachelorsOrHigher];
+        });
+        
 
         /* Legend variables */
         const legendCellHeight = 12;
