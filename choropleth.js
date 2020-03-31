@@ -214,4 +214,8 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
 [ ] Use d3 gradient library for a better gradient scale
 [ ] Implement legend cells
 [ ] Implement tooltip
+[ ] Debug 
+    [ ] Get rid of space before 3%
+    [ ] Get rid of line after 66%
+    [ ] Extend the space after 66% to align with cell width
 */
