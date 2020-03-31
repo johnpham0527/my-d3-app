@@ -73,20 +73,12 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         const legendCellHeight = 4;
         const legendCellWidth = 12;
 
-        const four = d3
-        .scaleBand()
-        .domain(degreeUnitTicks)
-        .range([0, padding*3]);
-
-        const legendScale = d3.scaleLinear()
+        const legendScale = d3
+            .scaleBand()
             .domain(degreeUnitTicks)
-            .range([0,legendCellWidth*10]);
+            .range([0, padding*3]);
 
-        const legendAxis = d3.axisBottom(legendScale)
-            .tickValues(degreeUnitTicks)
-            .tickFormat( (d) => d + "%") //add percent sign
-
-        const fourAxis = d3.axisBottom(four)   
+        const legendAxis = d3.axisBottom(legendScale)   
             .tickFormat( (d) => d + "%")
 
         /* Output counties */
@@ -122,7 +114,20 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         
         svg.append("g")
             .attr("transform", "translate(" + padding*10 + "," + padding/2 + ")")
-            .call(fourAxis)
+            .call(legendAxis)
+
+        /* Output legend cells */
+        svg.append("g")
+            .attr("id","legend")
+            .selectAll("rect")
+            .data(colorArray) //use the color array as the dataset
+            .enter() 
+            .append("rect")
+            .attr("x", (d, i) => (padding*10) + legendCellWidth*i) //place it in the top right location
+            .attr("y", padding/12)
+            .attr("width", legendCellWidth)
+            .attr("height", legendCellHeight)
+            .style("fill", (d) => d);
 
 
     })
@@ -208,6 +213,6 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
     [X] Use Promise
 [X] Link to example assignment: https://codepen.io/freeCodeCamp/full/EZKqza
 [ ] Use d3 gradient library for a better gradient scale
-[ ] Implement color cells
+[ ] Implement legend cells
 [ ] Implement tooltip
 */
