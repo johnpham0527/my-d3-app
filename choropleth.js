@@ -47,7 +47,7 @@ const getAllProperties = (arrayToSearch, fipsToFind) => { //Use this function to
     } 
 };
 
-const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
+const colorArray = ["#f7fcfd", "#e5f5f9", "#ccece6", "#99d8c9", "#66c2a4", "#41ae76", "#238b45", "#005824"] //colors selected with help from https://colorbrewer2.org/#type=sequential&scheme=BuGn&n=8
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
 
 
