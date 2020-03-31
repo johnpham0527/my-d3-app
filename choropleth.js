@@ -165,6 +165,6 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
     [ ] Get rid of space before 3%
     [ ] Get rid of line after 66%
     [ ] Extend the space after 66% to align with cell width
-[ ] Optimize
-    [ ] Figure out how I can use a hash table to speed up lookup performance
+[X] Optimize
+    [X] Figure out how I can use a hash table to speed up lookup performance
 */
