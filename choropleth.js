@@ -157,7 +157,6 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("transform", "translate(" + padding*10 + "," + padding/2 + ")")
             .call(legendAxis)
 
-
     })
 
     /** Log errors */
@@ -173,7 +172,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
 [X] Fetch data
     [X] Use Promise
 [X] Link to example assignment: https://codepen.io/freeCodeCamp/full/EZKqza
-[ ] Use d3 gradient library for a better gradient scale
+[X] Use better gradient (Color Brewer)
 [X] Implement legend cells
 [X] Implement tooltip
 [ ] Debug 
