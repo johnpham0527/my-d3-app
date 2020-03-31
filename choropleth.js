@@ -37,7 +37,7 @@ const getColor = (num) => { //given a number, return a color based on the gradie
     } 
    };
 
-const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
+const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "darkgreen"];
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
 
 
@@ -70,16 +70,18 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         const counties = topojsonObject.features;
 
         /* Legend variables */
-        const legendCellHeight = 4;
-        const legendCellWidth = 12;
+        const legendCellHeight = 12;
+        const legendCellWidth = padding*3/8;
 
         const legendScale = d3
             .scaleBand()
             .domain(degreeUnitTicks)
-            .range([0, padding*3]);
+            .range([0, padding*3])
 
-        const legendAxis = d3.axisBottom(legendScale)   
+        let legendAxis = d3.axisBottom(legendScale)  
+            .tickSizeOuter(0)
             .tickFormat( (d) => d + "%")
+            .tickSize(legendCellHeight*-1)
 
         /* Output counties */
         svg.selectAll("path")
@@ -105,16 +107,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             })
             .attr("transform", "translate(" + padding + "," + padding + ")")
 
-        /* Output legend axis*/
-        /*
-        svg.append("g")
-            .attr("transform", "translate(" + 0 + "," + 0 + ")")
-            .call(legendAxis);
-        */
-        
-        svg.append("g")
-            .attr("transform", "translate(" + padding*10 + "," + padding/2 + ")")
-            .call(legendAxis)
+
 
         /* Output legend cells */
         svg.append("g")
@@ -123,11 +116,16 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .data(colorArray) //use the color array as the dataset
             .enter() 
             .append("rect")
-            .attr("x", (d, i) => (padding*10) + legendCellWidth*i) //place it in the top right location
-            .attr("y", padding/12)
+            .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 15) //place it in the top right location
+            .attr("y", padding/2 - legendCellHeight) //line it up to above the axis
             .attr("width", legendCellWidth)
             .attr("height", legendCellHeight)
             .style("fill", (d) => d);
+
+        /* Output legend axis*/
+        svg.append("g")
+            .attr("transform", "translate(" + padding*10 + "," + padding/2 + ")")
+            .call(legendAxis)
 
 
     })
