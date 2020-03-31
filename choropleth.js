@@ -73,6 +73,11 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         const legendCellHeight = 4;
         const legendCellWidth = 12;
 
+        const four = d3
+        .scaleBand()
+        .domain([1, 2, 3, 4])
+        .range([0, 100]);
+
         const legendScale = d3.scaleLinear()
             .domain(degreeUnitTicks)
             .range([0,legendCellWidth*10]);
@@ -80,6 +85,8 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
         const legendAxis = d3.axisBottom(legendScale)
             .tickValues(degreeUnitTicks)
             .tickFormat( (d) => d + "%") //add percent sign
+
+        const fourAxis = d3.axisBottom(four);
 
         /* Output counties */
         svg.selectAll("path")
@@ -106,10 +113,14 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("transform", "translate(" + padding + "," + padding + ")")
 
         /* Output legend axis*/
+        /*
         svg.append("g")
             .attr("transform", "translate(" + 0 + "," + 0 + ")")
             .call(legendAxis);
+        */
         
+        svg.append("g")
+            .call(fourAxis)
 
 
     })
