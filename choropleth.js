@@ -41,8 +41,6 @@ const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen",
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
 
 
-
-
 /* SVG const */
 const svg = d3.select("#choropleth")
     .append("svg")
@@ -62,8 +60,9 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
     .then(([educationData, topologyData]) => {
         
         /* Debug Output */
-        document.getElementById('debug1').innerHTML = educationData[0].bachelorsOrHigher;
-        document.getElementById('debug2').innerHTML = topologyData.objects.counties.geometries[0].id;
+        //document.getElementById('debug1').innerHTML = educationData[0].bachelorsOrHigher;
+        document.getElementById('debug1').innerHTML = getProperty(educationData, 56045, "bachelorsOrHigher");
+        //document.getElementById('debug2').innerHTML = topologyData.objects.counties.geometries[0].id;
         
 
         /* Data manipulation variables */
