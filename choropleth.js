@@ -76,23 +76,18 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .append("path")
             .attr("d", d3.geoPath())
 
-            //debug this
-            //.data(educationData)
-            //.enter()
-
-            .attr("bachelorsOrHigher", (d) => getProperty(educationData, d.id, "bachelorsOrHigher"))
-        
+            //.attr("bachelorsOrHigher", (d) => getProperty(educationData, d.id, "bachelorsOrHigher"))    
 
             .style("fill", (d) => {
                 let color = "darkgreen";
                 for (let i = 0; i < degreeUnitTicks.length; i++) {
                     let currentTickValue = degreeUnitTicks[i];
-                    let thisValue = d.bachelorsOrHigher;
+                    let thisValue = getProperty(educationData, d.id, "bachelorsOrHigher");
                     if (currentTickValue < thisValue) {
                         continue; //skip and keep search for the right tick
                     }
                     else {
-                        color = colorScale(i);
+                        color = getColor(i);
                         break;
                     }
                 }
