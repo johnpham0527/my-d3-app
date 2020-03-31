@@ -75,11 +75,11 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
 
         const legendScale = d3.scaleLinear()
             .domain(degreeUnitTicks)
-            .range([0,legendCellWidth]);
+            .range([0,legendCellWidth*10]);
 
         const legendAxis = d3.axisBottom(legendScale)
             .tickValues(degreeUnitTicks)
-            .tickFormat(d3.format(".0%")); //no decimal places, add percent sign
+            .tickFormat( (d) => d + "%") //add percent sign
 
         /* Output counties */
         svg.selectAll("path")
@@ -107,7 +107,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
 
         /* Output legend axis*/
         svg.append("g")
-            .attr("transform", "translate(" + (w-padding-legendCellWidth*colorArray.length) + "," + (padding/12 + cellHeight - 1) + ")")
+            .attr("transform", "translate(" + 0 + "," + 0 + ")")
             .call(legendAxis);
         
 
