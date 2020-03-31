@@ -202,10 +202,12 @@ fetch('https://cdn.freecodecamp.org/testable-projects-fcc/data/choropleth_map/fo
 
 /*** To-do's */
 /*
-[ ] Study data
+[X] Study data
     [ ] Education data uses fips, which matches the id used in topology data
-[ ] Fetch data
-    [ ] Instead of using nested fetch statements, learn how to use d3.queue, defer, and await
-[ ] Link to example assignment: https://codepen.io/freeCodeCamp/full/EZKqza
-
+[X] Fetch data
+    [X] Use Promise
+[X] Link to example assignment: https://codepen.io/freeCodeCamp/full/EZKqza
+[ ] Use d3 gradient library for a better gradient scale
+[ ] Implement color cells
+[ ] Implement tooltip
 */
