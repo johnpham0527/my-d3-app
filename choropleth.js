@@ -169,15 +169,17 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
 /*** To-do's */
 /*
 [X] Study data
-    [ ] Education data uses fips, which matches the id used in topology data
+    [X] Education data uses fips, which matches the id used in topology data
 [X] Fetch data
     [X] Use Promise
 [X] Link to example assignment: https://codepen.io/freeCodeCamp/full/EZKqza
 [ ] Use d3 gradient library for a better gradient scale
-[ ] Implement legend cells
-[ ] Implement tooltip
+[X] Implement legend cells
+[X] Implement tooltip
 [ ] Debug 
     [ ] Get rid of space before 3%
     [ ] Get rid of line after 66%
     [ ] Extend the space after 66% to align with cell width
+[ ] Optimize
+    [ ] Figure out how I can use a hash table to speed up lookup performance
 */
