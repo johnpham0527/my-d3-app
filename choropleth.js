@@ -29,7 +29,7 @@ const getColor = (num) => { //given a number, return a color based on the gradie
     return colorArray[num];
  }
 
- const getProperty = (arrayToSearch, fipsToFind, propertyName) => {
+ const getProperty = (arrayToSearch, fipsToFind, propertyName) => { //Use this function to return a property value from the education data array, given a fips value to search
     for (let i = 0; i < arrayToSearch.length; i++) { //iterate through array
        if (arrayToSearch[i].fips == fipsToFind) { //compare each item's fip to fipToFind
            return arrayToSearch[i][propertyName]; //if it's a match, return the value associated with item[propertyName]
@@ -80,9 +80,8 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             //.data(educationData)
             //.enter()
 
-            //.attr("fips", (d) => d.id
-
-             
+            .attr("bachelorsOrHigher", (d) => getProperty(educationData, d.id, "bachelorsOrHigher"))
+        
 
             .style("fill", (d) => {
                 let color = "darkgreen";
