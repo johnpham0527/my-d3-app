@@ -32,9 +32,20 @@ const getColor = (num) => { //given a number, return a color based on the gradie
 const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
 
-/* Helper Functions */
 
 //Given an array of objects, a fips value, and an object property, iterate through array and return the corresponding property value
+const getProperty = (objectArray, fipsToFind, propertyName) => {
+
+ for (let i = 0; i < objectArray.length; i++) {
+  //iterate through object
+  //compare each item's fip to fipToFind
+  //if it's a match, return the value associated with item[propertyName]
+  
+
+ } 
+
+}; 
+
 
 /* SVG const */
 const svg = d3.select("#choropleth")
