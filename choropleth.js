@@ -29,13 +29,23 @@ const getColor = (num) => { //given a number, return a color based on the gradie
     return colorArray[num];
  }
 
- const getProperty = (arrayToSearch, fipsToFind, propertyName) => { //Use this function to return a property value from the education data array, given a fips value to search
+const getProperty = (arrayToSearch, fipsToFind, propertyName) => { //Use this function to return a property value from the matching element education data array, given a fips value to search
     for (let i = 0; i < arrayToSearch.length; i++) { //iterate through array
        if (arrayToSearch[i].fips == fipsToFind) { //compare each item's fip to fipToFind
            return arrayToSearch[i][propertyName]; //if it's a match, return the value associated with item[propertyName]
        }
     } 
-   };
+};
+
+const getAllProperties = (arrayToSearch, fipsToFind) => { //Use this function to return all property values from the matching element in education data array, given a fips value to search
+    for (let i = 0; i < arrayToSearch.length; i++) { //iterate through array
+       if (arrayToSearch[i].fips == fipsToFind) { //compare each item's fip to fipToFind
+            let area = arrayToSearch[i];
+            let array = new Array(area.area_name, area.state, area.bachelorsOrHigher)
+            return array; //if it's a match, return the value associated with item[propertyName]
+       }
+    } 
+};
 
 const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
@@ -115,9 +125,10 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
                 tooltip.style("opacity", 0.8)
                 .attr("id", "tooltip")
                 .attr("data-education", getProperty(educationData, d.id, "bachelorsOrHigher"))
-                .html( 
-                    "Percentage with bachelor's degree or higher: " + getProperty(educationData, d.id, "bachelorsOrHigher") + "%"
-                )     
+                .html( () => {
+                    let area = getAllProperties(educationData, d.id);
+                    return area[0] + ", " + area[1] + ": " + area[2] + "%";
+                })     
                 .style("left", d3.event.pageX + 5 + "px")
                 .style("top", d3.event.pageY - 5 + "px")
             })
