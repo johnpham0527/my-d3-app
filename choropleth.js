@@ -37,7 +37,7 @@ const getColor = (num) => { //given a number, return a color based on the gradie
     } 
    };
 
-const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "darkgreen"];
+const colorArray = ["lightgreen", "palegreen", "darkseagreen", "mediumseagreen", "seagreen", "forestgreen", "green", "darkgreen"];
 const degreeUnitTicks = [3, 12, 21, 30, 39, 48, 57, 66];
 
 
@@ -82,6 +82,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .tickSizeOuter(0)
             .tickFormat( (d) => d + "%")
             .tickSize(legendCellHeight*-1)
+
 
         /* Output counties */
         svg.selectAll("path")
