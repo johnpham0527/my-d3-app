@@ -67,8 +67,12 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("d", d3.geoPath())
 
             //debug this
-            .data(educationData)
-            .enter()
+            //.data(educationData)
+            //.enter()
+
+            //.attr("fips", (d) => d.id
+
+             
 
             .style("fill", (d) => {
                 let color = "darkgreen";
