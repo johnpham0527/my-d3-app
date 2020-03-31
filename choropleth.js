@@ -114,9 +114,9 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .on("mouseover", (d) => {
                 tooltip.style("opacity", 0.8)
                 .attr("id", "tooltip")
-                .attr("data-education", (d) => getProperty(educationData, d.id, "bachelorsOrHigher"))
+                .attr("data-education", getProperty(educationData, d.id, "bachelorsOrHigher"))
                 .html( 
-                    "Hello"
+                    "Percentage with bachelor's degree or higher: " + getProperty(educationData, d.id, "bachelorsOrHigher") + "%"
                 )     
                 .style("left", d3.event.pageX + 5 + "px")
                 .style("top", d3.event.pageY - 5 + "px")
