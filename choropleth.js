@@ -100,7 +100,9 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .enter()
             .append("path")
             .attr("d", d3.geoPath())
-            .attr("class", counties)
+            .attr("class", "county")
+            .attr("data-fips", (d) => d.id)
+            .attr("data-education", (d) => getProperty(educationData, d.id, "bachelorsOrHigher"))
             
 
             .style("fill", (d) => {
