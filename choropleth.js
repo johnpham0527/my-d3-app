@@ -108,14 +108,12 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("d", d3.geoPath())
             .attr("class", "county")
             .attr("data-fips", (d) => d.id)
-            .attr("data-education", (d) => getProperty(educationData, d.id, "bachelorsOrHigher"))
-            
-
+            .attr("data-education", (d) => fipsHash[d.id][2])
             .style("fill", (d) => {
                 let color = "darkgreen";
                 for (let i = 0; i < degreeUnitTicks.length; i++) {
                     let currentTickValue = degreeUnitTicks[i];
-                    let thisValue = getProperty(educationData, d.id, "bachelorsOrHigher");
+                    let thisValue = fipsHash[d.id][2]
                     if (currentTickValue < thisValue) {
                         continue; //skip and keep search for the right tick
                     }
@@ -132,10 +130,10 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .on("mouseover", (d) => {
                 tooltip.style("opacity", 0.8)
                 .attr("id", "tooltip")
-                .attr("data-education", getProperty(educationData, d.id, "bachelorsOrHigher"))
+                .attr("data-education", fipsHash[d.id][2])
                 .html( () => {
-                    let area = getAllProperties(educationData, d.id);
-                    return area[0] + ", " + area[1] + ": " + area[2] + "%";
+                    let county = fipsHash[d.id];
+                    return county[0] + ", " + county[1] + ": " + county[2] + "%"; //county[0] is the county name, county[1] is the state, and county[2] is the bachelor's or higher value
                 })     
                 .style("left", d3.event.pageX + 5 + "px")
                 .style("top", d3.event.pageY - 5 + "px")
