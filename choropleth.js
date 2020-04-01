@@ -50,12 +50,6 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
     /** Process data */
     .then(([educationData, topologyData]) => {
         
-        /* Debug Output */
-        //document.getElementById('debug1').innerHTML = educationData[0].bachelorsOrHigher;
-        //document.getElementById('debug1').innerHTML = getProperty(educationData, 56045, "bachelorsOrHigher");
-        //document.getElementById('debug2').innerHTML = topologyData.objects.counties.geometries[0].id;
-        
-
         /* Data manipulation variables */
         const topojsonObject = topojson.feature(topologyData, topologyData.objects.counties);
         const counties = topojsonObject.features;
@@ -65,21 +59,9 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             fipsHash[county.fips] = [county.area_name, county.state, county.bachelorsOrHigher];
         });
         
-
         /* Legend variables */
         const legendCellHeight = 12;
         const legendCellWidth = padding*3/8;
-
-        const legendScale = d3
-            .scaleBand()
-            .domain(degreeUnitTicks)
-            .range([0, padding*3])
-
-        let legendAxis = d3.axisBottom(legendScale)  
-            .tickSizeOuter(0)
-            .tickFormat( (d) => d + "%")
-            .tickSize(legendCellHeight*-1)
-
 
         /* Output counties */
         svg.selectAll("path")
