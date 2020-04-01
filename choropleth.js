@@ -126,7 +126,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
 
 
         /* Output legend */
-        let legend = svg.selectAll("g")
+        let legend = svg.selectAll("g") //generate legend group
             .attr("id","legend")
             .data(colorArray) //use the color array as the dataset
             .enter()
@@ -135,22 +135,30 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
                 "translate(" + padding*10 + i*legendCellWidth + "," + 0 +")"
             })
 
-        legend.append("rect")
+        legend.append("rect") //generate legend cells
             .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 15) //place it in the top right location
             .attr("y", padding/2 - legendCellHeight) //line it up to above the axis
             .attr("width", legendCellWidth)
             .attr("height", legendCellHeight)
             .style("fill", (d) => d)
 
-        legend.append("text")
+        legend.append("text") //generate legend text
             .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 8) //place it a bit to the right of each legend cell
             .attr("y", padding/2 + legendCellHeight) //line it up below each legend cell
             .attr("font-size", "0.75em")
             .text( (d, i) => degreeUnitTicks[i] + "%")
 
-        /* Output legend grid lines here */
+        legend.append("line") //generate vertical lines
+            .style("stroke", "black")
+            .style("stroke-width", 1)
+            .attr("x1", (d, i) => (padding*10) + legendCellWidth*i + 15)
+            .attr("y1", padding/2 - legendCellHeight)
+            .attr("x2", (d, i) => (padding*10) + legendCellWidth*i + 15)
+            .attr("y2", padding/2)
 
-        svg.append("legend")
+
+            
+        svg.append("legend") //output legend group
     })
 
     /** Log errors */
