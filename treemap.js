@@ -5,7 +5,7 @@
 
 
 /** Data Request */
-
+const VIDEO_GAME_SALES_URL = "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json";
 
 
 /** Tooltip */
