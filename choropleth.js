@@ -126,26 +126,28 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
 
 
         /* Output legend */
-
-        let legend = svg.selectAll("g") //generate legend group
+        svg.append("g") //generate legend cells separately in order to pass FreeCodeCamp validation
+            .attr("id","legend")
+            .selectAll("rect")
             .data(colorArray) //use the color array as the dataset
             .enter()
-            .append("g")
-
-        legend.append("rect") //generate legend cells
-            .attr("id","legend")
+            .append("rect") 
             .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 15) //place it in the top right location
             .attr("y", padding/2 - legendCellHeight) //line it up to above the axis
             .attr("width", legendCellWidth)
             .attr("height", legendCellHeight)
-            .style("fill", (d) => d)
-
-
+            .style("fill", (d) => d);
+            
+        let legend = svg.selectAll("g") //generate legend group
+            .data(colorArray) //use the color array as the dataset
+            .enter()
+            .append("g");
+            
         legend.append("text") //generate legend text
             .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 8) //place it a bit to the right of each legend cell
             .attr("y", padding/2 + legendCellHeight) //line it up below each legend cell
             .attr("font-size", "0.75em")
-            .text( (d, i) => degreeUnitTicks[i] + "%")
+            .text( (d, i) => degreeUnitTicks[i] + "%");
 
         legend.append("line") //generate vertical lines
             .style("stroke", "black")
@@ -153,7 +155,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("x1", (d, i) => (padding*10) + legendCellWidth*i + 15)
             .attr("y1", padding/2 - legendCellHeight)
             .attr("x2", (d, i) => (padding*10) + legendCellWidth*i + 15)
-            .attr("y2", padding/2)
+            .attr("y2", padding/2);
 
         legend.append("line")
             .style("stroke", "black") //generate horizontal lines
@@ -161,9 +163,10 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("x1", (d, i) => (padding*10) + legendCellWidth*i + 15)
             .attr("y1", padding/2)
             .attr("x2", (d, i) => (padding*10) + legendCellWidth*(i+1) + 15)
-            .attr("y2", padding/2)
+            .attr("y2", padding/2);
 
-        svg.append("legend") //output legend group
+        svg.append("legend"); //output legend group
+        
     })
 
     /** Log errors */
