@@ -15,7 +15,7 @@ const tooltip = d3.select("body")
                    .attr("id", "tooltip")
                    .style("opacity", 0);
 
-/** Global choropleth map variables */
+/** Global treemap map variables */
 /* Graph dimensions */
 const w = 1100;
 const h = 700;
@@ -71,6 +71,13 @@ fetch(VIDEO_GAME_SALES_URL)
         .paddingOuter(1); //configure the outer padding
     
     treemapLayout(root); //call treemapLayout by passing in the root hierarchy object
+
+    /** Color */
+    const color = d3.scaleOrdinal()
+        .domain(root.leaves().map( d => d.parent.data.name))
+        //I need 17 colors here
+        .range(["red", "orange", "yellow", "green", "blue", "violet"]);
+
 
     /** Tiles */
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
