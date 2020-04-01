@@ -126,6 +126,7 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
 
 
         /* Output legend cells */
+/*
         svg.append("g")
             .attr("id","legend")
             .selectAll("rect")
@@ -137,8 +138,28 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("width", legendCellWidth)
             .attr("height", legendCellHeight)
             .style("fill", (d) => d);
+*/
+
+        let legend = svg.selectAll("g")
+            .attr("id","legend")
+            .data(colorArray) //use the color array as the dataset
+            .enter()
+            .append("g")
+            .attr("transform", (d, i) => {
+                "translate(" + i*legendCellWidth + "," + 0 +")"
+            })
+
+            //https://stackoverflow.com/questions/20644415/d3-appending-text-to-a-svg-rectangle
+            .append("rect")
+            .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 15) //place it in the top right location
+            .attr("y", padding/2 - legendCellHeight) //line it up to above the axis
+            .attr("width", legendCellWidth)
+            .attr("height", legendCellHeight)
+            .style("fill", (d) => d)
+            .append("text")
 
         /* Output legend axis*/
+
         svg.append("g")
             .attr("transform", "translate(" + padding*10 + "," + padding/2 + ")")
             .call(legendAxis)
