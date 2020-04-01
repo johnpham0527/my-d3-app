@@ -148,5 +148,7 @@ fetch(VIDEO_GAME_SALES_URL)
  /*
 [ ] Wrap labels
 [ ] Create legend
+[ ] Create an array of colors based on Color Brewer
+[ ] Set style fill color based on parent name
 
  */
