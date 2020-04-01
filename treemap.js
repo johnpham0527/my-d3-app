@@ -54,7 +54,7 @@ fetch(VIDEO_GAME_SALES_URL)
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
         .selectAll("rect") 
         .attr("class", "tile")
-        .data(root.leaves())
+        .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
         .append("rect")
         .attr("x", d => d.x0)
@@ -67,7 +67,7 @@ fetch(VIDEO_GAME_SALES_URL)
     /** Text labels */
     svg.append("g")
         .selectAll("text")
-        .data(root.leaves())
+        .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
         .append("text")
         .attr("x", d => d.x0 + 5)
