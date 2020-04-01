@@ -172,22 +172,3 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
     .catch((error) => {
         console.log(error);
     })
-
-
-/*** To-do's */
-/*
-[X] Study data
-    [X] Education data uses fips, which matches the id used in topology data
-[X] Fetch data
-    [X] Use Promise
-[X] Link to example assignment: https://codepen.io/freeCodeCamp/full/EZKqza
-[X] Use better gradient (Color Brewer)
-[X] Implement legend cells
-[X] Implement tooltip
-[ ] Debug 
-    [ ] Get rid of space before 3%
-    [ ] Get rid of line after 66%
-    [ ] Extend the space after 66% to align with cell width
-[X] Optimize
-    [X] Figure out how I can use a hash table to speed up lookup performance
-*/
