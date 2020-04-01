@@ -156,8 +156,14 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("x2", (d, i) => (padding*10) + legendCellWidth*i + 15)
             .attr("y2", padding/2)
 
+        legend.append("line")
+            .style("stroke", "black") //generate horizontal lines
+            .style("stroke-width", 1)
+            .attr("x1", (d, i) => (padding*10) + legendCellWidth*i + 15)
+            .attr("y1", padding/2)
+            .attr("x2", (d, i) => (padding*10) + legendCellWidth*(i+1) + 15)
+            .attr("y2", padding/2)
 
-            
         svg.append("legend") //output legend group
     })
 
