@@ -92,12 +92,12 @@ fetch(VIDEO_GAME_SALES_URL)
         .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
         .append("text")
-
+        .text( d => d.data.name)
         .attr("x", d => d.x0 + 5)
         .attr("y", d => d.y0 + 20)
-        .text( d => d.data.name)
         .attr("font-size", "0.5em")
         .attr("fill", "black")
+
 
     
     /** Text labels */
@@ -136,4 +136,9 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
         
- 
+ /*** To-do */
+ /*
+[ ] Wrap labels
+[ ] Create legend
+
+ */
