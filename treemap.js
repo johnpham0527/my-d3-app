@@ -84,7 +84,15 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
         .style("stroke", "white")
-        .style("fill", "lightblue")
+        .style("fill", d => {
+            if (d.parent.data.name === "Wii") {
+                return "lightgreen";
+            }
+            else {
+                return "lightblue";
+            }
+            
+        })
 
     /** Text labels */
     svg.append("g")
@@ -114,7 +122,7 @@ fetch(VIDEO_GAME_SALES_URL)
 */
 
     /** Debug */
-    //document.getElementById("debug").innerHTML = videoGameData.children
+    document.getElementById("debug").innerHTML = videoGameData.children[0].children[0].name
 
 
        /* Legend variables */
