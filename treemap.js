@@ -32,9 +32,19 @@ const svg = d3.select("#treemap")
 
 /*** Choropleth code */
 
-
     /** Fetch data */
+fetch(VIDEO_GAME_SALES_URL)
+    .then( response => response.json())
+    .then( videoGameData => { 
 
+
+
+    /** Debug */
+    document.getElementById("debug").innerHTML = videoGameData.name
+
+    
+    } //closes out the last then statement
+ ); //closes out the fetch statement
 
     /** Process data */
 
@@ -54,6 +64,3 @@ const svg = d3.select("#treemap")
  
 
     /** Log errors */
-    .catch((error) => {
-        console.log(error);
-    })
