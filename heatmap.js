@@ -185,6 +185,8 @@ fetch('https://raw.githubusercontent.com/freeCodeCamp/ProjectReferenceData/maste
             .attr("y", padding/12)
             .attr("width", legendCellWidth)
             .attr("height", cellHeight)
+            .attr("border", 1)
+            .style("stroke", "black")
             .style("fill", (d) => d)
 
 }); // Closing brace for last then statement and closing parenthesis for fetch statement
