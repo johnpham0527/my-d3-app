@@ -142,12 +142,13 @@ Promise.all([ //use Promise to fetch both education and topological data sets"
             .attr("height", legendCellHeight)
             .style("fill", (d) => d)
 
-
         legend.append("text")
             .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 8) //place it a bit to the right of each legend cell
             .attr("y", padding/2 + legendCellHeight) //line it up below each legend cell
             .attr("font-size", "0.75em")
             .text( (d, i) => degreeUnitTicks[i] + "%")
+
+        /* Output legend grid lines here */
 
         svg.append("legend")
     })
