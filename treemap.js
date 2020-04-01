@@ -37,14 +37,16 @@ fetch(VIDEO_GAME_SALES_URL)
     .then( response => response.json())
     .then( videoGameData => { 
 
+    /** Process data */
     let root = d3.hierarchy(videoGameData) //create data structure that represents a hierarchy
         .sum( d => d.value) //traverses the tree and sets .value on each node to the sum of its children
         .sort( (a,b) => b.value - a.value)
 
+    /** Treemap hierarchy */
     let treemapLayout = d3.treemap(); //create the treemap
 
     treemapLayout.size([w, h]) //configure the width and height of the treemap
-        .paddingOuter(2); //configure the outer padding
+        .paddingOuter(1); //configure the outer padding
     
     treemapLayout(root); //call treemapLayout by passing in the root hierarchy object
 
@@ -52,24 +54,24 @@ fetch(VIDEO_GAME_SALES_URL)
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
         .selectAll("rect") 
         .attr("class", "tile")
-        .data(root.descendants()) //returns a flat array of root's descendants
+        .data(root.leaves())
         .enter()
         .append("rect")
         .attr("x", d => d.x0)
         .attr("y", d => d.y0)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
-        .style("stroke", "black")
+        .style("stroke", "white")
         .style("fill", "lightblue")
 
     /** Text labels */
     svg.append("g")
         .selectAll("text")
-        .data(root.descendants())
+        .data(root.leaves())
         .enter()
         .append("text")
         .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 +20)
+        .attr("y", d => d.y0 + 20)
         .text( d => d.data.name)
         .attr("font-size", "0.5em")
         .attr("fill", "black")
@@ -89,16 +91,10 @@ fetch(VIDEO_GAME_SALES_URL)
 */
 
     /** Debug */
-    document.getElementById("debug").innerHTML = videoGameData.children
+    //document.getElementById("debug").innerHTML = videoGameData.children
 
-    
-    } //closes out the last then statement
- ); //closes out the fetch statement
 
-    /** Process data */
-
-        
-        /* Legend variables */
+       /* Legend variables */
 
 
         /* Output tiles */
@@ -110,6 +106,11 @@ fetch(VIDEO_GAME_SALES_URL)
 
         /* Output legend */
 
- 
 
-    /** Log errors */
+
+    } //closes out the last then statement
+ ); //closes out the fetch statement
+
+
+        
+ 
