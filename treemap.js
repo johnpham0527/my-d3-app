@@ -154,6 +154,15 @@ fetch(VIDEO_GAME_SALES_URL)
  /*** To-do */
  /*
 [ ] Wrap labels
+    [ ] Create my own wrap text helper function
+    [ ] .append("text")
+    [ ] attributes...
+    [ ] .selectAll("tspan")
+    [ ] .data ( create my own dataset here by calling the wrap text function)
+    [ ] .enter
+    [ ] .append("tspan")
+    [ ] .html(d => d)
+    [ ] attributes...
 [ ] Create legend
 [ ] Create an array of colors based on Color Brewer
 [ ] Set style fill color based on parent name
