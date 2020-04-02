@@ -96,6 +96,11 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
         .style("stroke", "white")
+        .style("fill", (d,i) => {
+            return color[i];
+        })
+
+        /*
         .style("fill", d => {
             if (d.parent.data.name === "Wii") {
                 return "lightgreen";
@@ -105,6 +110,7 @@ fetch(VIDEO_GAME_SALES_URL)
             }
             
         })
+        */
 
 
         /** Tooltip */
