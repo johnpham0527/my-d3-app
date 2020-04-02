@@ -23,18 +23,17 @@ const padding = 80;
 
 /* Helper Functions */
 const wrapText = (text, width, height) => {
-/* Algorithm:
-1. split all text by space
-2. check width. if too large, cut off after wordWidth spaces
-3. check height. if too large, cut off after wordHeight spaces
-*/
     let maxWordWidth = Math.floor(width/7); //I estimate that each characters requires 7 pixels of width
     let maxTextLines = Math.floor(height/16); //I estimate that each text line requires 16 pixels of text
 
-    let textArray = text.split(" ") //splice the text by space into an array of text lines
-        .forEach( textLine => textLine.slice(0,maxWordWidth)); //for each line, trim all text that exceeds the max calculated width
+    let textArray = text.split(" "); //splice the text by space into an array of text lines
+    
+    textArray.map( textLine => textLine.slice(0,maxWordWidth)); //for each line, trim all text that exceeds the max calculated width
 
-    textArray.splice(0, maxTextLines); //trim any lines past the maximum number of text lines possible
+    if (textArray.length > maxTextLines) {
+        textArray = textArray.slice(0, maxTextLines); //trim any lines past the maximum number of text lines possible
+    }
+
     return textArray;
 
 /*
