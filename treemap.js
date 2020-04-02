@@ -52,7 +52,7 @@ const svg = d3.select("#treemap")
     .attr("width",w)
     .attr("height",h);
 
-const legend = d3.select("#legend")
+const legendSVG = d3.select("#legend")
     .append("svg")
     .attr("width", w)
     .attr("height", h);
@@ -193,6 +193,7 @@ fetch(VIDEO_GAME_SALES_URL)
 
         /* Output legend */
 
+    /** Output legend */
 
 
     } //closes out the last then statement
