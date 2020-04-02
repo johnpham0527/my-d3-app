@@ -33,8 +33,13 @@ const wrapText = (text, width, height) => {
         let wordWidth = Math.floor(width/7);
         let textArray = [];
         do {
-            slicedWord = word.slice(0,wordWidth);
-            word = word.slice(wordWidth)
+            slicedWord = word.slice(0,wordWidth); 
+            word = word.slice(wordWidth);
+
+            if (word[0] === " ") {//don't start a new line with an empty space
+                word = word.slice(1);
+            }
+            
             textArray.push(slicedWord);
         } while (word.length > wordWidth);
         textArray.push(word)
