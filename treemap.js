@@ -22,10 +22,8 @@ const h = 700;
 const padding = 80;
 
 /* Helper Functions */
-const wrapText = (text, width) => {
-    //return text.split(" ");
-    //if (text.length*6 < width) { //I estimate that each characters requires 6 pixels of width
-    let estimatedTextWidth = text.length * 7;
+const wrapText = (text, width, height) => {
+    let estimatedTextWidth = text.length * 7; //I estimate that each characters requires 7 pixels of width
     if (estimatedTextWidth < width) {
         return [text];
     }
@@ -119,7 +117,8 @@ fetch(VIDEO_GAME_SALES_URL)
         .data(d => {
             //return d.data.name.split(" ") //split the string into an array at each space
             let width = d.x1 - d.x0;
-            return wrapText(d.data.name, width)
+            let height = d.y1 - d.y0;
+            return wrapText(d.data.name, width, height)
                 .map(v => {
                     return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
                         text: v,
