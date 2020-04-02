@@ -88,6 +88,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .selectAll("tspan") //for each child's text, select all tspans
         .data(d => {
             return d.data.name.split(" ") //split the string into an array at each space
+            //need to write my own wrapText function that splits based on width
                 .map(v => {
                     return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
                         text: v,
@@ -99,9 +100,9 @@ fetch(VIDEO_GAME_SALES_URL)
         .enter()
         .append("tspan") //add a <tspan> for every text line
         .attr("x", d => d.x0 + 5)
-        .attr("y", (d, i) => d.y0 + 20 + i*5) //offset by index
+        .attr("y", (d, i) => d.y0 + 20 + i*10) //offset by index
         .text(d => d.text)
-        .attr("font-size", "0.75em")
+        .attr("font-size", "0.5em")
         .attr("fill", "black")
 
         
@@ -148,15 +149,7 @@ fetch(VIDEO_GAME_SALES_URL)
  /*** To-do */
  /*
 [ ] Wrap labels
-    [ ] Create my own wrap text helper function
-    [ ] .append("text")
-    [ ] attributes...
-    [ ] .selectAll("tspan")
-    [ ] .data ( create my own dataset here by calling the wrap text function)
-    [ ] .enter
-    [ ] .append("tspan")
-    [ ] .html(d => d)
-    [ ] attributes...
+    [ ] Create my own wrap text helper function that splits a text given the width
 [ ] Create legend
 [ ] Create an array of colors based on Color Brewer
 [ ] Set style fill color based on parent name
