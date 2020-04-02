@@ -23,7 +23,16 @@ const padding = 80;
 
 /* Helper Functions */
 const wrapText = (text, width) => {
-    return text.split(" ");
+    //return text.split(" ");
+    if (text.length * 50 < width) {
+        return [text];
+    }
+    else {
+        return text.split(" ");
+    }
+    //let newArray = [];
+    //let currentString = "";
+
 }
 
 /* SVG const */
