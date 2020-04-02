@@ -73,13 +73,25 @@ fetch(VIDEO_GAME_SALES_URL)
     treemapLayout(root); //call treemapLayout by passing in the root hierarchy object
 
     /** Color */
+    let colorArray = ["red", "orange", "yellow", "green", "blue", "violet",
+    "#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c",
+    "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"];
+    
+    let categoryColors = {}; //this object will eventually store all of the unique category names as keys and a color value
+    let categoryNamesArray = root.leaves().map(d => d.parent.data.name); //this array collects each leaf's category name
+
+    for (let i = 0; i < categoryNamesArray.length; i++) { //populate categoryNames object with category keys and a color value
+        categoryColors[leaf] = colorArray[i];
+    }
+
+    /*
     const color = d3.scaleOrdinal()
         .domain(root.leaves().map( d => d.parent.data.name))
         .range(["red", "orange", "yellow", "green", "blue", "violet",
             "#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c",
             "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"
         ]);
-
+    */
 
     /** Tiles */
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
@@ -96,8 +108,8 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
         .style("stroke", "white")
-        .style("fill", (d,i) => {
-            return color[i];
+        .style("fill", d => {
+            return categoryColors[d.parent.data.name];
         })
 
         /*
