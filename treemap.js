@@ -22,7 +22,7 @@ const h = 700;
 const padding = 80;
 
 /* Helper Functions */
-
+const wrapText = (string) => string.split('s').join('<br>');
 
 /* SVG const */
 const svg = d3.select("#treemap")
