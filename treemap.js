@@ -80,6 +80,41 @@ fetch(VIDEO_GAME_SALES_URL)
         })
 
     /** Text labels */
+    let tileText = svg.selectAll("text")
+        .data(root.leaves()) //returns a flat array of nodes with no children
+        .enter()
+        .append("text")
+
+        .attr("x", d => d.x0 + 5)
+        .attr("y", d => d.y0 + 20)
+
+        
+    tileText.append("g")
+        //.text(d => d.data.name.split(" ").join("\n"))
+        .selectAll("tspan")
+        .data(d => {
+            d.data.name.split(" ") //split the string into an array at each space
+                .map(v => {
+                    return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
+                        text: v,
+                        x0: d.x0, //keep the x0 reference
+                        y0: d.y0 //keep the y0 reference
+                    }
+                })
+        }) 
+        .enter()
+        .append("tspan") //add a <tspan> for every text line
+        .attr("x", d => d.x0 + 5)
+        .attr("y", d => d.y0 + 20)
+        .attr("dx", 10)
+        .attr("dy", 22)
+        .text(d => d.text)
+        .attr("font-size", "0.75em")
+        .attr("fill", "black")
+
+        
+
+    /*
     svg.append("g")
         .selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
@@ -88,23 +123,12 @@ fetch(VIDEO_GAME_SALES_URL)
         .text( d => d.data.name)
         .attr("x", d => d.x0 + 5)
         .attr("y", d => d.y0 + 20)
-        .attr("font-size", "0.5em")
+        .attr("font-size", "0.75em")
         .attr("fill", "black")
+        */
 
 
-    
-    /** Text labels */
-/*
-    svg.selectAll("text")
-        .data(root.leaves())
-        .enter()
-        .append("text")
-        .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 +20)
-        .text( d=> d.name)
-        .attr("font-size", "1em")
-        .attr("fill", "white")
-*/
+
 
     /** Debug */
     document.getElementById("debug").innerHTML = videoGameData.children[0].children[0].name
