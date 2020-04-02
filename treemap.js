@@ -24,7 +24,7 @@ const padding = 80;
 /* Helper Functions */
 const wrapText = (text, width) => {
     //return text.split(" ");
-    if (text.length * 50 < width) {
+    if (text.length*6 < width) { //I estimate that each characters requires 6 pixels of width
         return [text];
     }
     else {
@@ -33,6 +33,15 @@ const wrapText = (text, width) => {
     //let newArray = [];
     //let currentString = "";
 
+}
+
+const findLastSpaceIndex = (string) => { //given a text string, seek and return the index of the last space. Otherwise, return length minus 1.
+    let index = string.length-1;
+    for (let i = 0; i < string.length; i++) {
+        if (string[i] === " ")
+        index = i;
+    }
+    return index;
 }
 
 /* SVG const */
