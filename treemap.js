@@ -84,8 +84,8 @@ fetch(VIDEO_GAME_SALES_URL)
     svg.selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
-        .append(text) //append text for each child
-        .selectAll('tspan') //for each child's text, select all tspans
+        .append("text") //append text for each child
+        .selectAll("tspan") //for each child's text, select all tspans
         .data(d => {
             d.data.name.split(" ") //split the string into an array at each space
                 .map(v => {
