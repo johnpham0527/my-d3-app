@@ -99,6 +99,7 @@ fetch(VIDEO_GAME_SALES_URL)
 
     /** Tiles */
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
+        .attr("height", h-padding*3)
         .selectAll("rect") 
         .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
