@@ -24,16 +24,23 @@ const padding = 80;
 /* Helper Functions */
 const wrapText = (text, width) => {
     //return text.split(" ");
-    if (text.length*6 < width) { //I estimate that each characters requires 6 pixels of width
+    //if (text.length*6 < width) { //I estimate that each characters requires 6 pixels of width
+    if (text.length <= 15) {
         return [text];
     }
     else {
-        return text.split(" ");
+        let word = text;
+        let textArray = [];
+        while (word.length > 15) {
+            //textArray.push(word.splice(0,findLastSpaceIndex(word)));
+            let slicedWord = word.slice(0,15);
+            word = word.slice(15)
+            textArray.push(slicedWord);
+           }
+        return textArray;
     }
-    //let newArray = [];
-    //let currentString = "";
-
 }
+
 
 const findLastSpaceIndex = (string) => { //given a text string, seek and return the index of the last space. Otherwise, return length minus 1.
     let index = string.length-1;
