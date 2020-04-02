@@ -75,8 +75,10 @@ fetch(VIDEO_GAME_SALES_URL)
     /** Color */
     const color = d3.scaleOrdinal()
         .domain(root.leaves().map( d => d.parent.data.name))
-        //I need 17 colors here
-        .range(["red", "orange", "yellow", "green", "blue", "violet"]);
+        .range(["red", "orange", "yellow", "green", "blue", "violet",
+            "#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c",
+            "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"
+        ]);
 
 
     /** Tiles */
@@ -110,7 +112,7 @@ fetch(VIDEO_GAME_SALES_URL)
             tooltip.style("opacity", 0.8)
             .attr("id", "tooltip")
             .attr("data-value", d => d.data.value)
-            .html( () => {
+            .html( (d) => {
                 "Name: " + d.data.name + "<br>" + 
                 "Category: " + d.parent.data.name + "<br>" +
                 "Value: " + d.data.value  
