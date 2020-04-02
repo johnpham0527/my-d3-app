@@ -80,9 +80,13 @@ fetch(VIDEO_GAME_SALES_URL)
     let categoryColors = {}; //this object will eventually store all of the unique category names as keys and a color value
     let categoryNamesArray = root.leaves().map(d => d.parent.data.name); //this array collects each leaf's category name
 
-    for (let i = 0; i < categoryNamesArray.length; i++) { //populate categoryNames object with category keys and a color value
-        categoryColors[categoryNamesArray[i]] = colorArray[i];
+    for (let i = 0; i < categoryNamesArray.length; i++) { //populate categoryNames object with category keys
+        categoryColors[categoryNamesArray[i]] = "";
     }
+
+    Object.keys(categoryColors).forEach( (category, index) => { //populate each categoryColors with a color from colorArray
+        categoryColors[category] = colorArray[index];
+    })
 
     /*
     const color = d3.scaleOrdinal()
