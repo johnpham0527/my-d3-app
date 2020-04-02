@@ -25,18 +25,20 @@ const padding = 80;
 const wrapText = (text, width) => {
     //return text.split(" ");
     //if (text.length*6 < width) { //I estimate that each characters requires 6 pixels of width
-    if (text.length <= 15) {
+    let estimatedTextWidth = text.length * 6;
+    if (estimatedTextWidth < width) {
         return [text];
     }
     else {
         let word = text;
+        let slicedWord = "";
         let textArray = [];
-        while (word.length > 15) {
-            //textArray.push(word.splice(0,findLastSpaceIndex(word)));
-            let slicedWord = word.slice(0,15);
+        do {
+            slicedWord = word.slice(0,15);
             word = word.slice(15)
             textArray.push(slicedWord);
-           }
+        } while (word.length > 15);
+        //textArray.push(slicedWord)
         return textArray;
     }
 }
@@ -114,8 +116,8 @@ fetch(VIDEO_GAME_SALES_URL)
         .append("text") //append text for each child
         .selectAll("tspan") //for each child's text, select all tspans
         .data(d => {
-            //return d.data.name.split(" ") //split the string into an array at each space
-            return wrapText(d.data.name, d.x1)
+            return d.data.name.split(" ") //split the string into an array at each space
+            //return wrapText(d.data.name, d.x1)
                 .map(v => {
                     return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
                         text: v,
