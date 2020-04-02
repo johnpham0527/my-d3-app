@@ -81,7 +81,7 @@ fetch(VIDEO_GAME_SALES_URL)
     let categoryNamesArray = root.leaves().map(d => d.parent.data.name); //this array collects each leaf's category name
 
     for (let i = 0; i < categoryNamesArray.length; i++) { //populate categoryNames object with category keys and a color value
-        categoryColors[leaf] = colorArray[i];
+        categoryColors[i] = colorArray[i];
     }
 
     /*
