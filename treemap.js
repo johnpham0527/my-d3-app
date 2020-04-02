@@ -80,18 +80,12 @@ fetch(VIDEO_GAME_SALES_URL)
         })
 
     /** Text labels */
-    let tileText = svg.selectAll("text")
+        
+    svg.selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
-        .append("text")
-
-        .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 + 20)
-
-        
-    tileText.append("g")
-        //.text(d => d.data.name.split(" ").join("\n"))
-        .selectAll("tspan")
+        .append(text) //append text for each child
+        .selectAll('tspan') //for each child's text, select all tspans
         .data(d => {
             d.data.name.split(" ") //split the string into an array at each space
                 .map(v => {
@@ -105,9 +99,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .enter()
         .append("tspan") //add a <tspan> for every text line
         .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 + 20)
-        .attr("dx", 10)
-        .attr("dy", 22)
+        .attr("y", (d, i) => d.y0 + 20 + i*5) //offset by index
         .text(d => d.text)
         .attr("font-size", "0.75em")
         .attr("fill", "black")
