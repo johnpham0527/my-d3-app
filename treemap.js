@@ -22,7 +22,9 @@ const h = 700;
 const padding = 80;
 
 /* Helper Functions */
-
+const wrapText = (text, width) => {
+    return text;
+}
 
 /* SVG const */
 const svg = d3.select("#treemap")
