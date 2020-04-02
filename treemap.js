@@ -194,7 +194,33 @@ fetch(VIDEO_GAME_SALES_URL)
         /* Output legend */
 
     /** Output legend */
+    const legendCellWidth = 10;
+    const legendCellHeight = 10;
 
+    legendSVG.append("g") //generate legend cells separately in order to pass FreeCodeCamp validation
+        .attr("id","legend")
+        .selectAll("rect")
+        .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
+        .enter()
+        .append("rect") 
+        .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 15) //place it in the top right location
+        .attr("y", padding/2 - legendCellHeight) //line it up to above the axis
+        .attr("width", legendCellWidth)
+        .attr("height", legendCellHeight)
+        .style("fill", (d) => categoryColors[d]);
+
+    let legend = legendSVG.selectAll("g") //generate legend group
+        .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
+        .enter()
+        .append("g");
+    
+    legend.append("text") //generate legend text
+        .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 8) //place it a bit to the right of each legend cell
+        .attr("y", padding/2 + legendCellHeight) //line it up below each legend cell
+        .attr("font-size", "0.75em")
+        .text( d => d);
+
+        svg.append("legend"); //output legend group
 
     } //closes out the last then statement
  ); //closes out the fetch statement
