@@ -22,59 +22,29 @@ const h = 700;
 const padding = 80;
 
 /* Helper Functions */
-const wrapText = (text, width, height) => {
-    let maxWordWidth = Math.floor(width/7); //I estimate that each characters requires 7 pixels of width
-    let maxTextLines = Math.floor(height/16); //I estimate that each text line requires 16 pixels of text
-
-    let textArray = text.split(" "); //splice the text by space into an array of text lines
-    
-    for (let i = 0; i < textArray.length; i++) { //trim any text lines that exceed the maximum width
-        let textLine = textArray[i];
-        let slicedWord = textLine.slice(0,maxWordWidth);
-        textArray[i] = slicedWord;
-    }
-
-    if (textArray.length > maxTextLines) {
-        textArray = textArray.slice(0, maxTextLines); //trim any lines past the maximum number of text lines possible
-    }
-
-    return textArray;
-
-/*
-    let estimatedTextWidth = text.length * 7; //I estimate that each characters requires 7 pixels of width
-    if (estimatedTextWidth < width) {
-        return [text];
-    }
-    else {
-        let word = text;
-        let slicedWord = "";
-        let wordWidth = Math.floor(width/7);
-        let textArray = [];
-        do {
-            slicedWord = word.slice(0,wordWidth); 
-            word = word.slice(wordWidth);
-
-            if (word[0] === " ") {//don't start a new line with an empty space
-                word = word.slice(1);
-            }
-            
-            textArray.push(slicedWord);
-        } while (word.length > wordWidth);
-        textArray.push(word)
-        return textArray;
-    }
-*/
-}
-
-
-const findLastSpaceIndex = (string) => { //given a text string, seek and return the index of the last space. Otherwise, return length minus 1.
-    let index = string.length-1;
-    for (let i = 0; i < string.length; i++) {
-        if (string[i] === " ")
-        index = i;
-    }
-    return index;
-}
+function wrap(text, width) {
+    text.each(function() {
+      var text = d3.select(this),
+          words = text.text().split(/\s+/).reverse(),
+          word,
+          line = [],
+          lineNumber = 0,
+          lineHeight = 1.1, // ems
+          y = text.attr("y"),
+          dy = parseFloat(text.attr("dy")),
+          tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
+      while (word = words.pop()) {
+        line.push(word);
+        tspan.text(line.join(" "));
+        if (tspan.node().getComputedTextLength() > width) {
+          line.pop();
+          tspan.text(line.join(" "));
+          line = [word];
+          tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
+        }
+      }
+    });
+  }
 
 /* SVG const */
 const svg = d3.select("#treemap")
@@ -112,10 +82,13 @@ fetch(VIDEO_GAME_SALES_URL)
     /** Tiles */
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
         .selectAll("rect") 
-        .attr("class", "tile")
         .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
         .append("rect")
+        .attr("class", "tile")
+        .attr("data-name", d => d.data.name)
+        .attr("data-category", d => d.parent.data.name)
+        .attr("data-value", d => d.data.value)
         .attr("x", d => d.x0)
         .attr("y", d => d.y0)
         .attr("width", d => d.x1 - d.x0)
@@ -132,36 +105,6 @@ fetch(VIDEO_GAME_SALES_URL)
         })
 
     /** Text labels */
-        
-    svg.selectAll("text")
-        .data(root.leaves()) //returns a flat array of nodes with no children
-        .enter()
-        .append("text") //append text for each child
-        .selectAll("tspan") //for each child's text, select all tspans
-        .data(d => {
-            //return d.data.name.split(" ") //split the string into an array at each space
-            let width = d.x1 - d.x0;
-            let height = d.y1 - d.y0;
-            return wrapText(d.data.name, width, height)
-                .map(v => {
-                    return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
-                        text: v,
-                        x0: d.x0, //keep the x0 reference
-                        y0: d.y0 //keep the y0 reference
-                    }
-                });
-        }) 
-        .enter()
-        .append("tspan") //add a <tspan> for every text line
-        .attr("x", d => d.x0 + 5)
-        .attr("y", (d, i) => d.y0 + 20 + i*12) //offset by index
-        .text(d => d.text)
-        .attr("font-size", "0.75em")
-        .attr("fill", "black")
-
-        
-
-    /*
     svg.append("g")
         .selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
@@ -170,12 +113,23 @@ fetch(VIDEO_GAME_SALES_URL)
         .text( d => d.data.name)
         .attr("x", d => d.x0 + 5)
         .attr("y", d => d.y0 + 20)
-        .attr("font-size", "0.75em")
+        .attr("font-size", "0.5em")
         .attr("fill", "black")
-        */
 
 
-
+    
+    /** Text labels */
+/*
+    svg.selectAll("text")
+        .data(root.leaves())
+        .enter()
+        .append("text")
+        .attr("x", d => d.x0 + 5)
+        .attr("y", d => d.y0 +20)
+        .text( d=> d.name)
+        .attr("font-size", "1em")
+        .attr("fill", "white")
+*/
 
     /** Debug */
     document.getElementById("debug").innerHTML = videoGameData.children[0].children[0].name
@@ -203,10 +157,17 @@ fetch(VIDEO_GAME_SALES_URL)
  /*** To-do */
  /*
 [ ] Wrap labels
-    [ ] Create my own wrap text helper function that splits a text given the width
+    [ ] Create my own wrap text helper function
+    [ ] .append("text")
+    [ ] attributes...
+    [ ] .selectAll("tspan")
+    [ ] .data ( create my own dataset here by calling the wrap text function)
+    [ ] .enter
+    [ ] .append("tspan")
+    [ ] .html(d => d)
+    [ ] attributes...
 [ ] Create legend
 [ ] Create an array of colors based on Color Brewer
 [ ] Set style fill color based on parent name
-[] Implement id's and classes
 
  */
