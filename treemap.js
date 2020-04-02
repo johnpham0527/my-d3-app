@@ -87,14 +87,14 @@ fetch(VIDEO_GAME_SALES_URL)
         .append("text") //append text for each child
         .selectAll("tspan") //for each child's text, select all tspans
         .data(d => {
-            d.data.name.split(" ") //split the string into an array at each space
+            return d.data.name.split(" ") //split the string into an array at each space
                 .map(v => {
                     return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
                         text: v,
                         x0: d.x0, //keep the x0 reference
                         y0: d.y0 //keep the y0 reference
                     }
-                })
+                });
         }) 
         .enter()
         .append("tspan") //add a <tspan> for every text line
