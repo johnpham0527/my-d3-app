@@ -46,13 +46,18 @@ function wrap(text, width) {
     });
   }
 
-/* SVG const */
+/* SVG Treemap const */
 const svg = d3.select("#treemap")
     .append("svg")
     .attr("width",w)
     .attr("height",h);
 
-/*** Choropleth code */
+const legend = d3.select("#legend")
+    .append("svg")
+    .attr("width", w)
+    .attr("height", h);
+
+/*** Treemap code */
 
     /** Fetch data */
 fetch(VIDEO_GAME_SALES_URL)
