@@ -104,6 +104,25 @@ fetch(VIDEO_GAME_SALES_URL)
             
         })
 
+
+        /** Tooltip */
+        .on("mouseover", (d) => {
+            tooltip.style("opacity", 0.8)
+            .attr("id", "tooltip")
+            .attr("data-value", d => d.data.value)
+            .html( () => {
+                "Name: " + d.data.name + "<br>" + 
+                "Category: " + d.parent.data.name + "<br>" +
+                "Value: " + d.data.value  
+            })     
+            .style("left", d3.event.pageX + 5 + "px")
+            .style("top", d3.event.pageY - 5 + "px")
+        })
+        .on("mouseout", (d) => {
+            tooltip.style("opacity", 0)
+        });
+
+
     /** Text labels */
     svg.append("g")
         .selectAll("text")
@@ -140,23 +159,6 @@ fetch(VIDEO_GAME_SALES_URL)
 
         /* Output tiles */
 
-
-    /** Tooltip */
-    .on("mouseover", (d) => {
-        tooltip.style("opacity", 0.8)
-        .attr("id", "tooltip")
-        .attr("data-value", d => d.data.value)
-        .html( d => {
-            "Name: " + d.data.name + "<br>" + 
-            "Category: " + d.parent.data.name + "<br>" +
-            "Value: " + d.data.value  
-        })     
-        .style("left", d3.event.pageX + 5 + "px")
-        .style("top", d3.event.pageY - 5 + "px")
-    })
-    .on("mouseout", (d) => {
-        tooltip.style("opacity", 0)
-    });
 
 
         /* Output legend */
