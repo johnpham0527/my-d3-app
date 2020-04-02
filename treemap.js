@@ -100,9 +100,9 @@ fetch(VIDEO_GAME_SALES_URL)
         .enter()
         .append("tspan") //add a <tspan> for every text line
         .attr("x", d => d.x0 + 5)
-        .attr("y", (d, i) => d.y0 + 20 + i*10) //offset by index
+        .attr("y", (d, i) => d.y0 + 20 + i*12) //offset by index
         .text(d => d.text)
-        .attr("font-size", "0.5em")
+        .attr("font-size", "0.75em")
         .attr("fill", "black")
 
         
