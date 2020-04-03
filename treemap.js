@@ -152,26 +152,26 @@ fetch(VIDEO_GAME_SALES_URL)
     const legendCellWidth = 10;
     const legendCellHeight = 10;
 
-    /*
-    legendSVG.append("g") //generate legend cells separately in order to pass FreeCodeCamp validation
-        .selectAll("rect")
-        .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
-        .enter()
-        .append("rect") 
-        .attr("x", (d, i) => (padding*10) + legendCellWidth*i + 15) //place it in the top right location
-        .attr("y", padding/2 - legendCellHeight) //line it up to above the axis
-        .attr("width", legendCellWidth)
-        .attr("height", legendCellHeight)
-        .style("fill", (d) => categoryColors[d]);
-    */
+    let columns = [4, 6, 8]; //this array determines the number and placement of the legend element columns. 
 
     legendSVG.selectAll("rect")
         .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
         .enter()
         .append("rect")
         .attr("class", "legend-item")
-        .attr("x", 100)
-        .attr("y", 100)
+        .attr("x", (d, i) => {  //multi-column format
+            let value = 0;
+            if (i < 6)
+                value = columns[0];
+            else if (i < 12)
+                value = columns[1];
+            else
+                value = columns[2];
+            return padding*(value) + legendCellWidth + 4; //place it in the correct column, a bit to the right of the legend color cell
+        }) 
+        .attr("y", (d, i) => {
+            return padding/2 + legendCellHeight*2*(i%6) //line it up below each legend cell
+        })
         .attr("width", legendCellWidth)
         .attr("height", legendCellHeight)
         .style("fill", (d) => categoryColors[d]);
@@ -182,17 +182,17 @@ fetch(VIDEO_GAME_SALES_URL)
         .enter()
         .append("text") //generate legend text
         .attr("x", (d, i) => {  //multi-column format
-            let columnValue = 0;
+            let value = 0;
             if (i < 6)
-                columnValue = 3;
+                value = columns[0];
             else if (i < 12)
-                columnValue = 6;
+                value = columns[1];
             else
-                columnValue = 9;
-            return padding*columnValue + legendCellWidth + 4; //place it in the correct column, a bit to the right of the legend color cell
+                value = columns[2];
+            return padding*value + legendCellWidth*3; //place it in the correct column, a bit to the right of the legend color cell
         }) 
         .attr("y", (d, i) => {
-            return padding/2 + legendCellHeight*2*(i%6) + 1 //line it up below each legend cell
+            return padding/2 + legendCellHeight*2*(i%6) + legendCellHeight//line it up next to each legend cell
         })
         .attr("font-size", "0.75em")
         .text( d => d);
