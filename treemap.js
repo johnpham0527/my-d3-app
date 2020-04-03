@@ -23,6 +23,9 @@ const padding = 80;
 
 /* Helper Functions */
 const wrapText = (text, width, height) => {
+    let maxWordWidth = Math.floor(width/7); //I estimate that each characters requires 7 pixels of width
+    let maxTextLines = Math.floor(height/16); //I estimate that each text line requires 16 pixels of text
+
     let textArray = text.split(" "); //splice the text by space into an array of text lines
 
     textArray.map( textLine => textLine.slice(0,maxWordWidth)); //for each line, trim all text that exceeds the max calculated width
