@@ -104,28 +104,32 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
         .style("stroke", "white")
-        .style("fill", d => categoryColors[d.parent.data.name]);
+        .style("fill", d => categoryColors[d.parent.data.name])
 
 
 
         /** Tooltip */
-        /*
         .on("mouseover", (d) => {
             tooltip.style("opacity", 0.8)
             .attr("id", "tooltip")
-            .attr("data-value", d => d.data.value)
-            .html( (d) => {
+            //.attr("data-value", d => d.data.value)
+            .html( 
+                "Hello"
+                /*
+                (d) => {
                 "Name: " + d.data.name + "<br>" + 
                 "Category: " + d.parent.data.name + "<br>" +
                 "Value: " + d.data.value  
-            })     
+                }
+                */
+            )     
             .style("left", d3.event.pageX + 5 + "px")
             .style("top", d3.event.pageY - 5 + "px")
         })
         .on("mouseout", (d) => {
             tooltip.style("opacity", 0)
         });
-        */
+        
 
 
     /** Text labels */
