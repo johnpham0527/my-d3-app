@@ -28,7 +28,11 @@ const wrapText = (text, width, height) => {
 
     let textArray = text.split(" "); //splice the text by space into an array of text lines
 
-    textArray.map( textLine => textLine.slice(0,maxWordWidth)); //for each line, trim all text that exceeds the max calculated width
+    for (let i = 0; i < textArray.length; i++) { //trim any text lines that exceed the maximum width
+        let textLine = textArray[i];
+        let slicedWord = textLine.slice(0,maxWordWidth);
+        textArray[i] = slicedWord;
+    }
 
     if (textArray.length > maxTextLines) {
         textArray = textArray.slice(0, maxTextLines); //trim any lines past the maximum number of text lines possible
