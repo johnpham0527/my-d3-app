@@ -92,7 +92,6 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Tiles */
-    /*
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
         .attr("height", h-padding*3)
         .selectAll("rect") 
@@ -111,8 +110,6 @@ fetch(VIDEO_GAME_SALES_URL)
         .style("fill", d => {
             return categoryColors[d.parent.data.name];
         })
-        */
-
 
         /** Tooltip */
         /*
@@ -135,7 +132,7 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Text labels */
-    /*
+/*
     svg.append("g")
         .selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
@@ -165,7 +162,21 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     
-    /** Text labels */
+    /** Text labels - unwrapped code*/
+    /*
+    svg.append("g")
+        .selectAll("text")
+        .data(root.leaves()) //returns a flat array of nodes with no children
+        .enter()
+        .append("text")
+        .text( d => d.data.name)
+        .attr("x", d => d.x0 + 5)
+        .attr("y", d => d.y0 + 20)
+        .attr("font-size", "0.5em")
+        .attr("fill", "black")
+    */
+
+
 /*
     svg.selectAll("text")
         .data(root.leaves())
@@ -173,7 +184,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .append("text")
         .attr("x", d => d.x0 + 5)
         .attr("y", d => d.y0 +20)
-        .text( d=> d.name)
+        .text( d=> d.parent.name)
         .attr("font-size", "1em")
         .attr("fill", "white")
 */
