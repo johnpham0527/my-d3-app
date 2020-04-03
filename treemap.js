@@ -180,7 +180,7 @@ fetch(VIDEO_GAME_SALES_URL)
             return padding*columnValue + legendCellWidth + 4; //place it in the correct column, a bit to the right of the legend color cell
         }) 
         .attr("y", (d, i) => {
-            return padding/3 + legendCellHeight*2*(i%6) + 1 //line it up below each legend cell
+            return padding/2 + legendCellHeight*2*(i%6) + 1 //line it up below each legend cell
         })
         .attr("font-size", "0.75em")
         .text( d => d);
