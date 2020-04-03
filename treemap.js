@@ -159,13 +159,13 @@ fetch(VIDEO_GAME_SALES_URL)
             let width = d.x1 - d.x0;
             let height = d.y1 - d.y0;
             return wrapText(d.data.name, width, height) //call my custom wrapText function to split the text
-            .map(v => { //wrapText returns an array. Map each array element to a tspan
-                return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
-                    text: v,
-                    x0: d.x0, //keep the same reference point
-                    y0: d.y0 //keep the same reference point
-                }
-            })
+                .map(textLine => { //wrapText returns an array of wrapped text lines. Map each array element to a tspan
+                    return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
+                        text: textLine,
+                        x0: d.x0, //keep the same reference point
+                        y0: d.y0 //keep the same reference point
+                    }
+                })
         })
         .enter()
         .append("tspan") //add a tspan for every text line    
