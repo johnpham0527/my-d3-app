@@ -165,6 +165,18 @@ fetch(VIDEO_GAME_SALES_URL)
         .style("fill", (d) => categoryColors[d]);
     */
 
+    legendSVG.selectAll("rect")
+        .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
+        .enter()
+        .append("rect")
+        .attr("class", "legend-item")
+        .attr("x", 100)
+        .attr("y", 100)
+        .attr("width", legendCellWidth)
+        .attr("height", legendCellHeight)
+        .style("fill", (d) => categoryColors[d]);
+
+
     legendSVG.selectAll("text") //generate legend group
         .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
         .enter()
