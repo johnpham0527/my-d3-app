@@ -182,12 +182,4 @@ fetch(VIDEO_GAME_SALES_URL)
     */
 
     } //closes out the last then statement
- ); //closes out the fetch statement
-
-
-        
- /*** To-do */
- /*
-[ ] Create legend
-[ ] Debug tooltip
- */
+ ); //closes out the fetch statement 
