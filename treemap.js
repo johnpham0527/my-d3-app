@@ -22,28 +22,16 @@ const h = 700;
 const padding = 80;
 
 /* Helper Functions */
-function wrap(text, width) {
-    text.each(function() {
-      var text = d3.select(this),
-          words = text.text().split(/\s+/).reverse(),
-          word,
-          line = [],
-          lineNumber = 0,
-          lineHeight = 1.1, // ems
-          y = text.attr("y"),
-          dy = parseFloat(text.attr("dy")),
-          tspan = text.text(null).append("tspan").attr("x", 0).attr("y", y).attr("dy", dy + "em");
-      while (word = words.pop()) {
-        line.push(word);
-        tspan.text(line.join(" "));
-        if (tspan.node().getComputedTextLength() > width) {
-          line.pop();
-          tspan.text(line.join(" "));
-          line = [word];
-          tspan = text.append("tspan").attr("x", 0).attr("y", y).attr("dy", ++lineNumber * lineHeight + dy + "em").text(word);
-        }
-      }
-    });
+const wrapText = (text, width, height) => {
+    let textArray = text.split(" "); //splice the text by space into an array of text lines
+
+    textArray.map( textLine => textLine.slice(0,maxWordWidth)); //for each line, trim all text that exceeds the max calculated width
+
+    if (textArray.length > maxTextLines) {
+        textArray = textArray.slice(0, maxTextLines); //trim any lines past the maximum number of text lines possible
+    }
+
+    return textArray;
   }
 
 /* SVG Treemap const */
