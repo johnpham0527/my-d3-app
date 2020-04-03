@@ -154,10 +154,25 @@ fetch(VIDEO_GAME_SALES_URL)
         .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
         .append("text")
-        .text( d => d.data.name)
+        .selectAll("tspan")
+        .data(d => {
+            let width = d.x1 - d.x0;
+            let height = d.y1 - d.y0;
+            return wrapText(d.data.name, width, height) //call my custom wrapText function to split the text
+            .map(v => { //wrapText returns an array. Map each array element to a tspan
+                return { //an object that has a property called "text" with the split text, the x0 reference, and the y0 reference
+                    text: v,
+                    x0: d.x0, //keep the same reference point
+                    y0: d.y0 //keep the same reference point
+                }
+            })
+        })
+        .enter()
+        .append("tspan") //add a tspan for every text line    
         .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 + 20)
-        .attr("font-size", "0.5em")
+        .attr("y", d => d.y0 + 20 + i*5) //offset by index
+        .text(d => d.text)
+        .attr("font-size", "0.75em")
         .attr("fill", "black")
 
 
