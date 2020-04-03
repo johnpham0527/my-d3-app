@@ -47,7 +47,7 @@ const svg = d3.select("#treemap")
 const legendSVG = d3.select("#legend")
     .append("svg")
     .attr("width", w)
-    .attr("height", h/4);
+    .attr("height", h/5);
 
 /*** Treemap code */
 
@@ -170,7 +170,7 @@ fetch(VIDEO_GAME_SALES_URL)
             return padding*(value) + legendCellWidth + 4; //place it in the correct column, a bit to the right of the legend color cell
         }) 
         .attr("y", (d, i) => {
-            return padding/2 + legendCellHeight*2*(i%6) //line it up below each legend cell
+            return padding/5 + legendCellHeight*2*(i%6) //line it up below each legend cell
         })
         .attr("width", legendCellWidth)
         .attr("height", legendCellHeight)
@@ -192,7 +192,7 @@ fetch(VIDEO_GAME_SALES_URL)
             return padding*value + legendCellWidth*3; //place it in the correct column, a bit to the right of the legend color cell
         }) 
         .attr("y", (d, i) => {
-            return padding/2 + legendCellHeight*2*(i%6) + legendCellHeight//line it up next to each legend cell
+            return padding/5 + legendCellHeight*2*(i%6) + legendCellHeight//line it up next to each legend cell
         })
         .attr("font-size", "0.75em")
         .text( d => d);
