@@ -44,12 +44,10 @@ const svg = d3.select("#treemap")
     .attr("width",w)
     .attr("height",h);
 
-/*
 const legendSVG = d3.select("#legend")
     .append("svg")
     .attr("width", w)
     .attr("height", h);
-*/
 
 /*** Treemap code */
 
@@ -151,10 +149,10 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Output legend */
-    /*
     const legendCellWidth = 10;
     const legendCellHeight = 10;
 
+    /*
     legendSVG.append("g") //generate legend cells separately in order to pass FreeCodeCamp validation
         .attr("id","legend")
         .selectAll("rect")
