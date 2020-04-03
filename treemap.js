@@ -4,7 +4,6 @@
 /** Data Request */
 const VIDEO_GAME_SALES_URL = "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json";
 
-
 /** Tooltip */
 const tooltip = d3.select("body")
                    .append("div")
@@ -38,7 +37,7 @@ const wrapText = (text, width, height) => {
     return textArray;
   }
 
-/* SVG Treemap const */
+/* SVG Treemap and Legend */
 const svg = d3.select("#treemap")
     .append("svg")
     .attr("width",w)
@@ -50,7 +49,6 @@ const legendSVG = d3.select("#legend")
     .attr("height", h/5);
 
 /*** Treemap code */
-
     /** Fetch data */
 fetch(VIDEO_GAME_SALES_URL)
     .then( response => response.json())
@@ -84,7 +82,6 @@ fetch(VIDEO_GAME_SALES_URL)
     Object.keys(categoryColors).forEach( (category, index) => { //populate each categoryColors with a color from colorArray
         categoryColors[category] = colorArray[index];
     })
-
 
     /** Tiles */
     svg.append("g") //join treemap nodes to rect elements and update the x, y, width, height, style and other properties of each rect
@@ -148,11 +145,11 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("fill", "black")
 
 
-    /** Output legend */
+    /** Legend */
     const legendCellWidth = 10;
     const legendCellHeight = 10;
 
-    let columns = [4, 6, 8]; //this array determines the number and placement of the legend element columns. 
+    const columns = [4, 6, 8]; //this array determines the number and placement of the legend element columns. 
 
     legendSVG.selectAll("rect")
         .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
