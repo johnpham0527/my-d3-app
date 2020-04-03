@@ -132,7 +132,7 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Text labels */
-/*
+
     svg.append("g")
         .selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
@@ -152,30 +152,12 @@ fetch(VIDEO_GAME_SALES_URL)
                 })
         })
         .enter()
-        .append("tspan") //add a tspan for every text line    
+        .append("tspan") //add a tspan for every text line  
         .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 + 20 + i*5) //offset by index
+        .attr("y", (d, i) => d.y0 + 20 + i*12) //offset by index
         .text(d => d.text)
         .attr("font-size", "0.75em")
         .attr("fill", "black")
-        */
-
-
-    
-    /** Text labels - unwrapped code*/
-    /*
-    svg.append("g")
-        .selectAll("text")
-        .data(root.leaves()) //returns a flat array of nodes with no children
-        .enter()
-        .append("text")
-        .text( d => d.data.name)
-        .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 + 20)
-        .attr("font-size", "0.5em")
-        .attr("fill", "black")
-    */
-
 
 /*
     svg.selectAll("text")
