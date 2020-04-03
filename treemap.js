@@ -1,9 +1,6 @@
 "use strict";
 
 /*** Initialize global variables */
-/** Dataset */
-
-
 /** Data Request */
 const VIDEO_GAME_SALES_URL = "https://cdn.freecodecamp.org/testable-projects-fcc/data/tree_map/video-game-sales-data.json";
 
@@ -132,7 +129,6 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Text labels */
-
     svg.append("g")
         .selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
@@ -159,19 +155,6 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("font-size", "0.75em")
         .attr("fill", "black")
 
-/*
-    svg.selectAll("text")
-        .data(root.leaves())
-        .enter()
-        .append("text")
-        .attr("x", d => d.x0 + 5)
-        .attr("y", d => d.y0 +20)
-        .text( d=> d.parent.name)
-        .attr("font-size", "1em")
-        .attr("fill", "white")
-*/
-
-        /* Output legend */
 
     /** Output legend */
     /*
@@ -211,18 +194,6 @@ fetch(VIDEO_GAME_SALES_URL)
         
  /*** To-do */
  /*
-[ ] Wrap labels
-    [ ] Create my own wrap text helper function
-    [ ] .append("text")
-    [ ] attributes...
-    [ ] .selectAll("tspan")
-    [ ] .data ( create my own dataset here by calling the wrap text function)
-    [ ] .enter
-    [ ] .append("tspan")
-    [ ] .html(d => d)
-    [ ] attributes...
 [ ] Create legend
-[ ] Create an array of colors based on Color Brewer
-[ ] Set style fill color based on parent name
 
  */
