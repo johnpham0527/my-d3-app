@@ -47,7 +47,7 @@ const svg = d3.select("#treemap")
 const legendSVG = d3.select("#legend")
     .append("svg")
     .attr("width", w)
-    .attr("height", h/3);
+    .attr("height", h/4);
 
 /*** Treemap code */
 
