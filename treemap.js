@@ -114,14 +114,9 @@ fetch(VIDEO_GAME_SALES_URL)
             .attr("id", "tooltip")
             //.attr("data-value", d => d.data.value)
             .html( 
-                "Hello"
-                /*
-                (d) => {
                 "Name: " + d.data.name + "<br>" + 
                 "Category: " + d.parent.data.name + "<br>" +
                 "Value: " + d.data.value  
-                }
-                */
             )     
             .style("left", d3.event.pageX + 5 + "px")
             .style("top", d3.event.pageY - 5 + "px")
