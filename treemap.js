@@ -88,14 +88,6 @@ fetch(VIDEO_GAME_SALES_URL)
         categoryColors[category] = colorArray[index];
     })
 
-    /*
-    const color = d3.scaleOrdinal()
-        .domain(root.leaves().map( d => d.parent.data.name))
-        .range(["red", "orange", "yellow", "green", "blue", "violet",
-            "#a6cee3", "#1f78b4", "#b2df8a", "#33a02c", "#fb9a99", "#e31a1c",
-            "#fdbf6f", "#ff7f00", "#cab2d6", "#6a3d9a", "#ffff99", "#b15928"
-        ]);
-    */
 
     /** Tiles */
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
@@ -117,20 +109,9 @@ fetch(VIDEO_GAME_SALES_URL)
             return categoryColors[d.parent.data.name];
         })
 
-        /*
-        .style("fill", d => {
-            if (d.parent.data.name === "Wii") {
-                return "lightgreen";
-            }
-            else {
-                return "lightblue";
-            }
-            
-        })
-        */
-
 
         /** Tooltip */
+        /*
         .on("mouseover", (d) => {
             tooltip.style("opacity", 0.8)
             .attr("id", "tooltip")
@@ -146,6 +127,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .on("mouseout", (d) => {
             tooltip.style("opacity", 0)
         });
+        */
 
 
     /** Text labels */
@@ -190,20 +172,10 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("fill", "white")
 */
 
-    /** Debug */
-    document.getElementById("debug").innerHTML = videoGameData.children[0].children[0].name
-
-
-       /* Legend variables */
-
-
-        /* Output tiles */
-
-
-
         /* Output legend */
 
     /** Output legend */
+    /*
     const legendCellWidth = 10;
     const legendCellHeight = 10;
 
@@ -231,6 +203,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .text( d => d);
 
         svg.append("legend"); //output legend group
+    */
 
     } //closes out the last then statement
  ); //closes out the fetch statement
