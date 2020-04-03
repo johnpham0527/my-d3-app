@@ -89,7 +89,8 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Tiles */
-    svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
+
+    svg.append("g") //join treemap nodes to rect elements and update the x, y, width, height, style and other properties of each rect
         .selectAll("rect") 
         .data(root.leaves()) //returns a flat array of nodes with no children
         .enter()
@@ -103,9 +104,9 @@ fetch(VIDEO_GAME_SALES_URL)
         .attr("width", d => d.x1 - d.x0)
         .attr("height", d => d.y1 - d.y0)
         .style("stroke", "white")
-        .style("fill", d => {
-            return categoryColors[d.parent.data.name];
-        })
+        .style("fill", d => categoryColors[d.parent.data.name]);
+
+
 
         /** Tooltip */
         /*
