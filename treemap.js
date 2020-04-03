@@ -170,26 +170,21 @@ fetch(VIDEO_GAME_SALES_URL)
         .enter()
         .append("text") //generate legend text
         .attr("x", (d, i) => {  //multi-column format
-            if (i < 8) {
-                return padding*2 + legendCellWidth + 4 //place it a bit to the right of the legend color cell
-            }
-            else if (i < 16) {
-                return padding*3 + legendCellWidth + 4 //place it in a second column, a bit to the right of the legend color cell
-            }
-            else {
-                return padding*4 + legendCellWidth + 4
-            }
+            let columnValue = 0;
+            if (i < 4)
+                columnValue = 3;
+            else if (i < 8)
+                columnValue = 4;
+            else if (i < 12)
+                columnValue = 5;
+            else if (i < 16)
+                columnValue = 6;
+            else
+                columnValue = 7;
+            return padding*columnValue + legendCellWidth + 4; //place it in the correct column, a bit to the right of the legend color cell
         }) 
         .attr("y", (d, i) => {
-            /*
-            if (i < 8) {
-                return padding
-            }
-            else {
-
-            }
-            */
-            return padding/3 + legendCellHeight*2*(i%8) + 1 //line it up below each legend cell
+            return padding/3 + legendCellHeight*2*(i%4) + 1 //line it up below each legend cell
         })
         .attr("font-size", "0.75em")
         .text( d => d);
