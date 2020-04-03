@@ -165,7 +165,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .style("fill", (d) => categoryColors[d]);
     */
 
-    legendSVG.selectAll("g") //generate legend group
+    legendSVG.selectAll("text") //generate legend group
         .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
         .enter()
         .append("text") //generate legend text
