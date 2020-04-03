@@ -195,5 +195,5 @@ fetch(VIDEO_GAME_SALES_URL)
  /*** To-do */
  /*
 [ ] Create legend
-
+[ ] Debug tooltip
  */
