@@ -169,15 +169,28 @@ fetch(VIDEO_GAME_SALES_URL)
         .data(Object.keys(categoryColors)) //use categoryColors keys as the dataset
         .enter()
         .append("text") //generate legend text
-        .attr("x", (d, i) => {  //two-column format
+        .attr("x", (d, i) => {  //multi-column format
             if (i < 8) {
                 return padding*2 + legendCellWidth + 4 //place it a bit to the right of the legend color cell
             }
-            else {
+            else if (i < 16) {
                 return padding*3 + legendCellWidth + 4 //place it in a second column, a bit to the right of the legend color cell
             }
+            else {
+                return padding*4 + legendCellWidth + 4
+            }
         }) 
-        .attr("y", (d, i) => padding/3 + legendCellHeight*i + 1) //line it up below each legend cell
+        .attr("y", (d, i) => {
+            /*
+            if (i < 8) {
+                return padding
+            }
+            else {
+
+            }
+            */
+            return padding/3 + legendCellHeight*2*(i%8) + 1 //line it up below each legend cell
+        })
         .attr("font-size", "0.75em")
         .text( d => d);
 
