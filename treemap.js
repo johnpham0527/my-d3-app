@@ -47,10 +47,12 @@ const svg = d3.select("#treemap")
     .attr("width",w)
     .attr("height",h);
 
+/*
 const legendSVG = d3.select("#legend")
     .append("svg")
     .attr("width", w)
     .attr("height", h);
+*/
 
 /*** Treemap code */
 
@@ -90,6 +92,7 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Tiles */
+    /*
     svg.append("g") //join nodes to rect elements and update the x, y, width, and height properties of each rect
         .attr("height", h-padding*3)
         .selectAll("rect") 
@@ -108,6 +111,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .style("fill", d => {
             return categoryColors[d.parent.data.name];
         })
+        */
 
 
         /** Tooltip */
@@ -131,6 +135,7 @@ fetch(VIDEO_GAME_SALES_URL)
 
 
     /** Text labels */
+    /*
     svg.append("g")
         .selectAll("text")
         .data(root.leaves()) //returns a flat array of nodes with no children
@@ -156,6 +161,7 @@ fetch(VIDEO_GAME_SALES_URL)
         .text(d => d.text)
         .attr("font-size", "0.75em")
         .attr("fill", "black")
+        */
 
 
     
