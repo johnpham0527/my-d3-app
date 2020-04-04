@@ -33,7 +33,9 @@ const colorScale = (num) => { //given a number, return a color based on the grad
 }
 
 const monthArray = ["January", "February", "March", "April", "May", "June", "July", "August", "September", "October", "November", "December"]
-const colorArray = ["midnightblue", "mediumblue", "royalblue", "lightcyan", "lightyellow", "peachpuff", "salmon", "crimson", "darkred"];
+const colorArray = [ "#3288bd", "#66c2a5", "#abdda4", 
+                     "#e6f598", "#ffffbf", "#fee08b", 
+                     "#fdae61", "#f46d43", "#d53e4f"]; //use colors from ColorBrewer2.org
 
 /* SVG const */
 const svg = d3.select("#heatmap")
