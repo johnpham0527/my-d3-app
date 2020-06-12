@@ -12,15 +12,15 @@ body {
     padding: 0;
     margin: 0 auto 0 auto;
     font-family: "Work Sans", helvetica, arial, sans-serif;
-    max-width: 800px;
+    max-width: 1600px;
 }
 
-/*
+
 .container {
     display: flex;
     flex-direction: column;
 }
-*/
+
 
 
 /* App Styles
@@ -33,12 +33,24 @@ body {
 main {
     text-align: center;
     margin: auto;
+    flex: 1 0 100%;
+    display: flex;
+    flex-wrap: wrap;
 }
-  
+
 svg {
     background-color: ghostwhite;
 }
-  
+
+#title {
+    flex: 1 1 100%;
+}
+
+#heatmap {
+    flex: 1 1 100%;
+}
+
+
 #title p {
     font-size: 1.2em;
     font-weight: bold;

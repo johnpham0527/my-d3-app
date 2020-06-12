@@ -41,7 +41,7 @@ const colorArray = [ "#3288bd", "#66c2a5", "#abdda4",
 const svg = d3.select("#heatmap")
     .append("svg")
     .attr("preserveAspectRatio", "xMinYMin meet")
-    .attr("viewBox", "0 0 1300 420")
+    .attr("viewBox", "0 0 1260 400")
     .classed("svg-content", true)
     //.attr("width",w)
     //.attr("height",h)
